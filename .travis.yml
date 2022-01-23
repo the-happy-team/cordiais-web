@@ -1,0 +1,18 @@
+language: node_js
+
+notifications:
+  email: false
+
+install:
+  - npm install
+
+script:
+  - npm run build
+  - git checkout --orphan gh-pages
+  - git rm --cached -r . &> /dev/null
+  - mv public/* .
+  - rm -rf package* rollup* tsconfig* src/ .travis* public/
+  - git add .
+  - git commit -m "updates site" &> /dev/null
+  - git push origin :gh-pages
+  - git push origin gh-pages
