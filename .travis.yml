@@ -16,6 +16,6 @@ script:
   - rm -rf package* rollup* tsconfig* src/ .travis* public/
   - git add .
   - git commit -m "updates site" &> /dev/null
-  - git remote add origin https://thiagohersan:$GHTOKEN@github.com/the-happy-team/cordiais-web.git
-  - git push origin :gh-pages
-  - git push origin gh-pages
+  - git remote add gh https://thiagohersan:$GHTOKEN@github.com/the-happy-team/cordiais-web.git
+  - git push gh :gh-pages
+  - git push gh gh-pages
