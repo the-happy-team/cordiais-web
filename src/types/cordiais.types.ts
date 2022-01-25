@@ -18,10 +18,10 @@ export type CordialType = {
     emotions: EmotionType;
     slug: string;
     face_rectangle: {
-        height: number;
         left: number;
         top: number;
         width: number;
+        height: number;
     }
 };
 
