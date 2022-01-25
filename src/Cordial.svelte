@@ -1,24 +1,23 @@
 <script lang="ts">
     import type { CordialType } from './types/cordiais.types';
     import { EmotionOrder } from './types/cordiais.types';
-    export let ficha: CordialType;
-    let topEmotion: string = 'angry';
-
-    $: {
-        topEmotion = EmotionOrder.reduce((a:string, b:string) => ficha.emotions[a] > ficha.emotions[b] ? a : b);
-    }
-
+    export let obra: CordialType;
+    let topEmotion: string;
+    $: topEmotion = EmotionOrder.reduce((a:string, b:string) => obra.emotions[a] > obra.emotions[b] ? a : b);
 </script>
 
 <div class="cordial">
-    <div class="title">{ficha.title}</div>
-    <div class="year">{ficha.year}</div>
-    <div class="artist">{ficha.artist}</div>
-    <div class="medium">{ficha.medium}</div>
-    <div class="dimensions">{`${ficha.dimension.width} x ${ficha.dimension.height} ${ficha.dimension.unit}`}</div>
-    <div class="collection">{ficha.collection}</div>
+    <div class="title">{obra.title}</div>
+    <div class="year">{obra.year}</div>
+    <div class="artist">{obra.artist}</div>
+    <div class="medium">{obra.medium}</div>
+    <div class="dimensions">{`${obra.dimension.width} x ${obra.dimension.height} ${obra.dimension.unit}`}</div>
+    <div class="collection">{obra.collection}</div>
     <div class="emotion">{topEmotion}</div>
 
+    <!-- TODO:
+            show img
+            show square -->
 </div>
 
 <style lang="scss">

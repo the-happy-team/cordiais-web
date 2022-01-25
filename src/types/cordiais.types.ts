@@ -15,7 +15,14 @@ export type CordialType = {
     artist: string;
     dimension: { width: number, height: number, unit: string };
     collection: string;
-    emotions: EmotionType
+    emotions: EmotionType;
+    slug: string;
+    face_rectangle: {
+        height: number;
+        left: number;
+        top: number;
+        width: number;
+    }
 };
 
 export const EmotionOrder: Array<string> = [

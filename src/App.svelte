@@ -1,29 +1,33 @@
 <script lang="ts">
 	import type { CordialType } from './types/cordiais.types';
 	import Cordial from './Cordial.svelte';
-	let ficha_test: CordialType = {
-		title: 'mtitle',
-		year: '1981',
-		medium: 'agua',
-		dimension: {width: 42, height: 182, unit: 'cm'},
-		artist: 'fulano',
-		collection: 'my col',
-		emotions: {
-			happiness: 0.275,
-			neutral: 1.276,
-			surprise: 4.155,
-			sadness: 0.198,
-			disgust: 0.685,
-			anger: 91.541,
-			fear: 1.87
-		}
-	};
 
-	setTimeout(() => ficha_test.emotions.disgust = 92.111, 1000);
+	let allObras: Array<CordialType>;
+	let selectedObra: CordialType;
+	let obrasReady = false;
+
+	async function getObras() {
+		let response = await fetch(`${window.location.href}data/obras.json`);
+		let obras = await response.json();
+		return Object.keys(obras).map(o => obras[o]);
+	}
+
+	getObras().then((obras) => {
+		allObras = obras.filter(obra => 'emotions' in obra);
+		selectedObra = allObras[0];
+		obrasReady = true;
+	});
 </script>
 
 <main>
-	<Cordial ficha={ficha_test} />
+	{#if obrasReady}
+		<select bind:value={selectedObra} >
+			{#each allObras as obra}
+				<option value={obra}>{obra.title}</option>
+			{/each}
+		</select>
+		<Cordial obra={selectedObra} />
+	{/if}
 </main>
 
 <style>
