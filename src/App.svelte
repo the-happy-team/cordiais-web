@@ -14,6 +14,7 @@
 
 	getObras().then((obras) => {
 		allObras = obras.filter(obra => 'emotions' in obra);
+		// allObras = allObras.filter(obra => obra.emotions.neutral < 50);
 		selectedObra = allObras[0];
 		obrasReady = true;
 	});

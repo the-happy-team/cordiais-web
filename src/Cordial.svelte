@@ -13,7 +13,10 @@
     <div class="medium">{obra.medium}</div>
     <div class="dimensions">{`${obra.dimension.width} x ${obra.dimension.height} ${obra.dimension.unit}`}</div>
     <div class="collection">{obra.collection}</div>
-    <div class="emotion">{topEmotion}</div>
+
+    {#each EmotionOrder as e}
+        <div class="emotion">{e}: {obra.emotions[e]}</div>
+    {/each}
 
     <!-- TODO:
             show img
