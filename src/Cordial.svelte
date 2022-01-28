@@ -18,9 +18,7 @@
         <div class="emotion">{e}: {obra.emotions[e]}</div>
     {/each}
 
-    <!-- TODO:
-            show img
-            show square -->
+    <div class="image" style={`background-image: url('./imgs/obras/${obra.img}');`}></div>
 </div>
 
 <style lang="scss">
@@ -42,6 +40,13 @@
         }
         .collection {
             color: hotpink;
+        }
+        .image {
+            width: 33%;
+            height: 300px;
+            background-position: top left;
+            background-repeat: no-repeat;
+            background-size: contain;
         }
     }
 </style>
