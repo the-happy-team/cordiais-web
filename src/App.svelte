@@ -34,7 +34,6 @@
 		if (filterNeutral)
 			filteredObras = filteredObras.filter(obra => obra.emotions.neutral <= filterCut);
 
-		filteredObras = filteredObras;
 		selectedObra = filteredObras[0];
 	}
 </script>
@@ -49,7 +48,7 @@
 </label>
 <label>
 	<input type=checkbox bind:checked={filterNeutral} on:change={updateFiltered}>
-	Neutro &lt; <input bind:value={filterCut}>%
+	Neutro &lt; <input bind:value={filterCut} on:change={updateFiltered}>%
 </label>
 
 {#if obrasReady}
@@ -58,5 +57,7 @@
 			<option value={obra}>{obra.artist} - {obra.title}</option>
 		{/each}
 	</select>{filteredObras.length}
-	<Cordial obra={selectedObra} />
+	{#if filteredObras.length > 0}
+		<Cordial obra={selectedObra} />
+	{/if}
 {/if}
