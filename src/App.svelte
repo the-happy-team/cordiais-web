@@ -38,18 +38,20 @@
 	}
 </script>
 
-<label>
-	<input type=checkbox bind:checked={filterNudes} on:change={updateFiltered}>
-	Nudes
-</label>
-<label>
-	<input type=checkbox bind:checked={filterMarcantonio} on:change={updateFiltered}>
-	Marcantonio
-</label>
-<label>
-	<input type=checkbox bind:checked={filterNeutral} on:change={updateFiltered}>
-	Neutro &lt; <input bind:value={filterCut} on:change={updateFiltered}>%
-</label>
+<div class="filters">
+	<div class="filter-group">
+		<input type=checkbox bind:checked={filterNudes} on:change={updateFiltered}>
+		Nudes
+	</div>
+	<div class="filter-group">
+		<input type=checkbox bind:checked={filterMarcantonio} on:change={updateFiltered}>
+		Marcantonio
+	</div>
+	<div class="filter-group">
+		<input type=checkbox bind:checked={filterNeutral} on:change={updateFiltered}>
+		Neutro &lt; <input bind:value={filterCut} on:change={updateFiltered}>%
+	</div>
+</div>
 
 {#if obrasReady}
 	<select bind:value={selectedObra} >
@@ -61,3 +63,22 @@
 		<Cordial obra={selectedObra} />
 	{/if}
 {/if}
+
+<style lang="scss">
+	.filters {
+		display: flex;
+		flex-direction: column;
+
+		.filter-group {
+			display: flex;
+			flex-direction: row;
+			align-content: center;
+			align-items: baseline;
+			margin: 4px 0;
+
+			input {
+				margin-right: 8px;
+			}
+		}
+	}
+</style>
