@@ -17,6 +17,9 @@ export type CordialType = {
     collection: string;
     emotions: EmotionType;
     slug: string;
+    nudes: boolean;
+    marcantonio: boolean;
+    img: string;
     face_rectangle: {
         left: number;
         top: number;
