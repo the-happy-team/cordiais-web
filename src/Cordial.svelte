@@ -7,11 +7,11 @@
 </script>
 
 <div class="cordial">
-    <div class="title">{obra.title}</div>
-    <div class="year">{obra.year}</div>
+    <div class="title">{obra.title} - {obra.year}</div>
     <div class="artist">{obra.artist}</div>
-    <div class="medium">{obra.medium}</div>
-    <div class="dimensions">{`${obra.dimension.width} x ${obra.dimension.height} ${obra.dimension.unit}`}</div>
+    <div class="medium">
+        {obra.medium} / {`${obra.dimension.width} x ${obra.dimension.height} ${obra.dimension.unit}`}
+    </div>
     <div class="collection">{obra.collection}</div>
 
     {#each EmotionOrder as e}
@@ -24,19 +24,13 @@
 <style lang="scss">
     .cordial {
         .title {
-            color: pink;
-        }
-        .year {
-            color: aquamarine;
+            color: rgb(128, 0, 0);
         }
         .artist {
-            color: blueviolet;
+            color: rgb(0, 128, 0);
         }
         .medium {
-            color: dodgerblue;
-        }
-        .dimensions {
-            color: goldenrod;
+            color: rgb(0, 0, 128);
         }
         .collection {
             color: hotpink;
