@@ -1,9 +1,19 @@
 <script lang="ts">
     import type { CordialType } from './types/cordiais.types';
     import { EmotionOrder } from './types/cordiais.types';
+
     export let obra: CordialType;
+
     let topEmotion: string;
-    $: topEmotion = EmotionOrder.reduce((a:string, b:string) => obra.emotions[a] > obra.emotions[b] ? a : b);
+    let selectedEmotion: string;
+
+    let getTopEmotion = (o: CordialType) => {
+        let te = EmotionOrder.reduce((a, b) => o.emotions[a] > o.emotions[b] ? a : b);
+        selectedEmotion = te;
+        return te;
+    };
+
+    $: topEmotion = getTopEmotion(obra);
 </script>
 
 <div class="cordial">
@@ -14,11 +24,18 @@
     </div>
     <div class="collection">{obra.collection}</div>
 
-    {#each EmotionOrder as e}
-        <div class="emotion">{e}: {obra.emotions[e]}</div>
-    {/each}
+    <div class="emotion-list">
+        {#each EmotionOrder as e}
+            <label class="emotion-option" class:selected={selectedEmotion == e}>
+                <input type=radio bind:group={selectedEmotion} name="emotions" value={e}>
+                {`${e}: ${obra.emotions[e]}`}
+            </label>
+        {/each}
+    </div>
 
-    <div class="image" style={`background-image: url('./imgs/obras/${obra.img}');`}></div>
+    <div class="images-container">
+        <div class="image" style={`background-image: url('./imgs/obras/${obra.img}');`}></div>
+    </div>
 </div>
 
 <style lang="scss">
@@ -35,12 +52,34 @@
         .collection {
             color: hotpink;
         }
-        .image {
-            width: 33%;
-            height: 300px;
-            background-position: top left;
-            background-repeat: no-repeat;
-            background-size: contain;
+
+        .emotion-list {
+            margin: 10px 0;
+        }
+
+        .emotion-option {
+            cursor: pointer;
+            line-height: 1.4;
+            &.selected {
+                color: cadetblue;
+            }
+            input[type=radio] {
+                display: none;
+            }
+        }
+
+        .images-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            .image {
+                width: 33%;
+                height: 300px;
+                background-position: top left;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
         }
     }
 </style>
