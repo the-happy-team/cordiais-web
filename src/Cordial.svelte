@@ -54,12 +54,14 @@
         }
 
         .emotion-list {
+            width: max-content;
             margin: 10px 0;
         }
 
         .emotion-option {
             cursor: pointer;
             line-height: 1.4;
+
             &.selected {
                 color: cadetblue;
             }
