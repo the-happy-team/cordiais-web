@@ -4,16 +4,13 @@
 
     export let obra: CordialType;
 
-    let topEmotion: string;
     let selectedEmotion: string;
 
-    let getTopEmotion = (o: CordialType) => {
-        let te = EmotionOrder.reduce((a, b) => o.emotions[a] > o.emotions[b] ? a : b);
-        selectedEmotion = te;
-        return te;
+    let selectTopEmotion = (o: CordialType) => {
+        selectedEmotion = EmotionOrder.reduce((a, b) => o.emotions[a] > o.emotions[b] ? a : b);
     };
 
-    $: topEmotion = getTopEmotion(obra);
+    $: selectTopEmotion(obra);
 </script>
 
 <div class="cordial">
