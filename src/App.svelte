@@ -9,6 +9,7 @@
   let obrasReady = false;
   let filterNudes = false;
   let filterMarcantonio = false;
+  let filterCollection = "";
 
   const emoFilters = EmotionOrder.map((e) => {
     return {
@@ -18,6 +19,8 @@
       enabled: false,
     };
   });
+
+  const allCollections = [""];
 
   async function getObras() {
     let response = await fetch(`${window.location.href}data/obras.json`);
@@ -31,6 +34,10 @@
     filteredObras = [...allObras];
     selectedObra = filteredObras[0];
     obrasReady = true;
+
+    [...new Set(filteredObras.map((o) => o.collection))].forEach((c) =>
+      allCollections.push(c)
+    );
   });
 
   let updateFiltered = () => {
@@ -44,12 +51,17 @@
 
     emoFilters.forEach(({ emo, min, max, enabled }) => {
       if (enabled) {
-        filteredObras = filteredObras.filter((o) => {
-          return o.emotions[emo] <= max && o.emotions[emo] >= min;
+        filteredObras = filteredObras.filter((obra) => {
+          return obra.emotions[emo] <= max && obra.emotions[emo] >= min;
         });
       }
     });
 
+    if (filterCollection != "") {
+      filteredObras = filteredObras.filter((obra) => {
+        return obra.collection == filterCollection;
+      });
+    }
     selectedObra = filteredObras[0];
   };
 </script>
@@ -79,10 +91,30 @@
         bind:checked={ef.enabled}
         on:change={updateFiltered}
       />
-      <input bind:value={ef.min} on:change={updateFiltered} />% &lt;
-      {ef.emo} &lt; <input bind:value={ef.max} on:change={updateFiltered} />%
+      <input
+        class="filter-number"
+        bind:value={ef.min}
+        on:change={updateFiltered}
+      />% &lt;
+      <div class="filter-emo-label">{ef.emo}</div>
+      &lt;
+      <input
+        class="filter-number"
+        bind:value={ef.max}
+        on:change={updateFiltered}
+      />%
     </div>
   {/each}
+
+  {#if obrasReady}
+    <select bind:value={filterCollection} on:change={updateFiltered}>
+      {#each allCollections as collection}
+        <option value={collection}>
+          {collection}
+        </option>
+      {/each}
+    </select>
+  {/if}
 </div>
 
 {#if obrasReady}
@@ -110,6 +142,16 @@
 
       input {
         margin-right: 8px;
+      }
+      .filter-number {
+        display: block;
+        width: 50px;
+        border: none;
+        border-bottom: 1px solid #aaa;
+      }
+      .filter-emo-label {
+        width: 120px;
+        text-align: center;
       }
     }
   }
