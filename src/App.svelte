@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { CordialType } from "./types/cordiais.types";
+  import { EmotionOrder } from "./types/cordiais.types";
   import Cordial from "./Cordial.svelte";
 
   let allObras: Array<CordialType>;
@@ -8,8 +9,15 @@
   let obrasReady = false;
   let filterNudes = false;
   let filterMarcantonio = false;
-  let filterNeutral = false;
-  let filterCut = 50;
+
+  const emoFilters = EmotionOrder.map((e) => {
+    return {
+      emo: e,
+      min: 0,
+      max: 50,
+      enabled: false,
+    };
+  });
 
   async function getObras() {
     let response = await fetch(`${window.location.href}data/obras.json`);
@@ -27,13 +35,20 @@
 
   let updateFiltered = () => {
     filteredObras = [...allObras];
-    if (filterNudes) filteredObras = filteredObras.filter((obra) => obra.nudes);
-    if (filterMarcantonio)
+    if (filterNudes) {
+      filteredObras = filteredObras.filter((obra) => obra.nudes);
+    }
+    if (filterMarcantonio) {
       filteredObras = filteredObras.filter((obra) => obra.marcantonio);
-    if (filterNeutral)
-      filteredObras = filteredObras.filter(
-        (obra) => obra.emotions.neutral <= filterCut
-      );
+    }
+
+    emoFilters.forEach(({ emo, min, max, enabled }) => {
+      if (enabled) {
+        filteredObras = filteredObras.filter((o) => {
+          return o.emotions[emo] <= max && o.emotions[emo] >= min;
+        });
+      }
+    });
 
     selectedObra = filteredObras[0];
   };
@@ -56,14 +71,18 @@
     />
     Marcantonio
   </div>
-  <div class="filter-group">
-    <input
-      type="checkbox"
-      bind:checked={filterNeutral}
-      on:change={updateFiltered}
-    />
-    Neutro &lt; <input bind:value={filterCut} on:change={updateFiltered} />%
-  </div>
+
+  {#each emoFilters as ef}
+    <div class="filter-group">
+      <input
+        type="checkbox"
+        bind:checked={ef.enabled}
+        on:change={updateFiltered}
+      />
+      <input bind:value={ef.min} on:change={updateFiltered} />% &lt;
+      {ef.emo} &lt; <input bind:value={ef.max} on:change={updateFiltered} />%
+    </div>
+  {/each}
 </div>
 
 {#if obrasReady}
