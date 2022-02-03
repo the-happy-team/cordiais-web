@@ -107,7 +107,11 @@
   {/each}
 
   {#if obrasReady}
-    <select bind:value={filterCollection} on:change={updateFiltered}>
+    <select
+      class="select-collection"
+      bind:value={filterCollection}
+      on:change={updateFiltered}
+    >
       {#each allCollections as collection}
         <option value={collection}>
           {collection}
@@ -132,6 +136,7 @@
   .filters {
     display: flex;
     flex-direction: column;
+    width: 50%;
 
     .filter-group {
       display: flex;
