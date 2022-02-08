@@ -18,6 +18,8 @@
   };
 
   const emo2color = (emo) => {
+    if (emo == "neutral") return "#7f7f7f";
+    else return "#000000";
     switch (emo) {
       case "happiness":
         return "#FFEA00";
@@ -37,7 +39,6 @@
   };
 
   const drawCanvas = (_) => {
-    console.log("hey");
     if (!obraCanvas) return;
 
     // clear canvas
