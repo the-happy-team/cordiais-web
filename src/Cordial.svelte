@@ -16,11 +16,13 @@
 </script>
 
 <div class="cordial">
-  <div class="title">{obra.title} - {obra.year}</div>
   <div class="artist">{obra.artist}</div>
-  <div class="medium">
-    {obra.medium} / {`${obra.dimension.width} x ${obra.dimension.height} ${obra.dimension.unit}`}
+  <div class="title">{obra.title}, {obra.year}</div>
+  <div class="medium">{obra.medium}</div>
+  <div class="dimension">
+    {`${obra.dimension.width} x ${obra.dimension.height} ${obra.dimension.unit}`}
   </div>
+
   <div class="collection">{obra.collection}</div>
 
   <div class="emotion-list">
@@ -48,13 +50,10 @@
 <style lang="scss">
   .cordial {
     .title {
-      color: rgb(128, 0, 0);
+      font-style: italic;
     }
     .artist {
-      color: rgb(0, 128, 0);
-    }
-    .medium {
-      color: rgb(0, 0, 128);
+      font-weight: 800;
     }
     .collection {
       color: hotpink;
