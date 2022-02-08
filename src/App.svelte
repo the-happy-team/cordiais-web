@@ -122,7 +122,7 @@
 </div>
 
 {#if obrasReady}
-  <select bind:value={selectedObra}>
+  <select class="obra-select" bind:value={selectedObra}>
     {#each filteredObras as obra}
       <option value={obra}>{obra.artist} - {obra.title}</option>
     {/each}
@@ -159,5 +159,9 @@
         text-align: center;
       }
     }
+  }
+
+  .obra-select {
+    width: 90%;
   }
 </style>
