@@ -9,6 +9,7 @@
   let obrasReady = false;
   let filterNudes = false;
   let filterMarcantonio = false;
+  let filterDimensions = false;
   let filterCollection = "";
 
   const emoFilters = EmotionOrder.map((e) => {
@@ -48,6 +49,9 @@
     if (filterMarcantonio) {
       filteredObras = filteredObras.filter((obra) => obra.marcantonio);
     }
+    if (filterDimensions) {
+        filteredObras = filteredObras.filter((obra) => obra.dimension.height && obra.dimension.width);
+    }
 
     emoFilters.forEach(({ emo, min, max, enabled }) => {
       if (enabled) {
@@ -78,10 +82,10 @@
   <div class="filter-group">
     <input
       type="checkbox"
-      bind:checked={filterMarcantonio}
+      bind:checked={filterDimensions}
       on:change={updateFiltered}
     />
-    Marcantonio
+    Dimensões
   </div>
 
   {#each emoFilters as ef}

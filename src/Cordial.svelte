@@ -63,7 +63,9 @@
     }
 
     obraBackground.x = (obraCanvas.width - obraBackground.width) / 2;
-    obraBackground.y = (obraCanvas.height - obraBackground.height) / 2;
+    // obraBackground.y = (obraCanvas.height - obraBackground.height) / 2;
+    obraBackground.y = 0;
+
     ctx.fillStyle = emo2color("neutral");
     ctx.fillRect(
       obraBackground.x,
