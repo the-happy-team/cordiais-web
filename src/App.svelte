@@ -15,8 +15,8 @@
   const emoFilters = EmotionOrder.map((e) => {
     return {
       emo: e,
-      min: 0,
-      max: 50,
+      min: e == "neutral" ? 0 : 50,
+      max: e == "neutral" ? 50 : 100,
       enabled: false,
     };
   });
