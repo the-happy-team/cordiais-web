@@ -12,6 +12,11 @@
   let filterDimensions = false;
   let filterCollection = "";
 
+  const deathFilter = {
+    enabled: false,
+    year: 1950,
+  };
+
   const emoFilters = EmotionOrder.map((e) => {
     return {
       emo: e,
@@ -50,7 +55,7 @@
       filteredObras = filteredObras.filter((obra) => obra.marcantonio);
     }
     if (filterDimensions) {
-        filteredObras = filteredObras.filter((obra) => obra.dimension.height && obra.dimension.width);
+      filteredObras = filteredObras.filter((obra) => obra.dimension.height && obra.dimension.width);
     }
 
     emoFilters.forEach(({ emo, min, max, enabled }) => {
@@ -66,6 +71,13 @@
         return obra.collection == filterCollection;
       });
     }
+
+    if (deathFilter.enabled) {
+      filteredObras = filteredObras.filter(
+        (obra) => obra.artist_death <= deathFilter.year
+      );
+    }
+
     selectedObra = filteredObras[0];
   };
 </script>
@@ -86,6 +98,20 @@
       on:change={updateFiltered}
     />
     Dimensões
+  </div>
+
+  <div class="filter-group">
+    <input
+      type="checkbox"
+      bind:checked={deathFilter.enabled}
+      on:change={updateFiltered}
+    />
+    <input
+      class="filter-number"
+      bind:value={deathFilter.year}
+      on:change={updateFiltered}
+    />
+    Morte do Artista
   </div>
 
   {#each emoFilters as ef}

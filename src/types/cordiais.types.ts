@@ -19,6 +19,7 @@ export type CordialType = {
     slug: string;
     nudes: boolean;
     marcantonio: boolean;
+    artist_death: number;
     img: string;
     face_rectangle: {
         left: number;
