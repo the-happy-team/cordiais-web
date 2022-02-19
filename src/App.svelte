@@ -106,12 +106,12 @@
       bind:checked={deathFilter.enabled}
       on:change={updateFiltered}
     />
+    Morte do Artista (antes de)
     <input
       class="filter-number"
       bind:value={deathFilter.year}
       on:change={updateFiltered}
     />
-    Morte do Artista
   </div>
 
   {#each emoFilters as ef}
