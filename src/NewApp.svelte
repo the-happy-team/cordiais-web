@@ -69,13 +69,8 @@
     padding-bottom: 10%;
     border: 1px solid blueviolet;
     box-sizing: border-box;
-    background-color: bisque;
     cursor: pointer;
     user-select: none;
-
-    &:hover {
-      background-color: antiquewhite;
-    }
   }
 
   .face-content {
@@ -86,8 +81,17 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    // filter: grayscale(1);
+    transition: filter 0.12s linear;
+
+    &:hover {
+      filter: brightness(1.1);
+      // filter: grayscale(0);
+    }
   }
 </style>
