@@ -58,7 +58,6 @@
     height: 100vh;
     padding: 0;
     margin: 0;
-    background-color: aqua;
   }
 
   .face {
@@ -67,7 +66,6 @@
     flex-direction: column;
     width: 10%;
     padding-bottom: 10%;
-    border: 1px solid blueviolet;
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;
@@ -86,12 +84,10 @@
     background-repeat: no-repeat;
     background-size: cover;
 
-    // filter: grayscale(1);
     transition: filter 0.12s linear;
 
     &:hover {
       filter: brightness(1.2);
-      // filter: grayscale(0);
     }
   }
 </style>
