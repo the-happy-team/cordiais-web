@@ -1,28 +1,54 @@
 <script lang="ts">
-  const faces = [...Array(100).keys()].map((i) => {
-    return {
-      value: i,
-    };
-  });
+  import type { CordialType } from "./types/cordiais.types";
 
-  const handleFaceClick = (f) => {
-    faces.forEach((item, i) => {
-      if (item.value === f.value) {
-        faces.splice(i, 1);
-        faces.unshift(null);
-        faces[0] = f;
+  let allObras: Array<CordialType>;
+  let filteredObras: Array<CordialType>;
+  let selectedObra: CordialType;
+
+  const handleFaceClick = (o: CordialType) => {
+    filteredObras.forEach((item, i) => {
+      if (item.slug === o.slug) {
+        filteredObras.splice(i, 1);
+        filteredObras.unshift(null);
+        filteredObras[0] = o;
       }
     });
   };
+
+  async function getObras() {
+    const baseurl = window.location.href.replace(window.location.hash, "");
+    let response = await fetch(`${baseurl}data/obras.json`);
+    let obras = await response.json();
+
+    const obrasList = Object.keys(obras).map((o) => obras[o]);
+    obrasList.sort((a, b) => a.artist.localeCompare(b.artist));
+
+    allObras = obrasList.filter(
+      (obra) => "emotions" in obra && "face_rectangle" in obra
+    );
+    filteredObras = [...allObras];
+    selectedObra = filteredObras[0];
+  }
+
+  let getObrasPromise = getObras();
 </script>
 
-<div class="container">
-  {#each faces as face (face.value)}
-    <div class="face" on:click={() => handleFaceClick(face)}>
-      <div class="face-content">{face.value}</div>
-    </div>
-  {/each}
-</div>
+{#await getObrasPromise}
+  <p>...waiting</p>
+{:then number}
+  <div class="container">
+    {#each filteredObras as obra (obra.slug)}
+      <div class="face" on:click={() => handleFaceClick(obra)}>
+        <div
+          class="face-content"
+          style={`background-image: url('./imgs/faces/${obra.img}');`}
+        />
+      </div>
+    {/each}
+  </div>
+{:catch error}
+  <p style="color: red">{error.message}</p>
+{/await}
 
 <style lang="scss">
   .container {
@@ -60,5 +86,8 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 </style>
