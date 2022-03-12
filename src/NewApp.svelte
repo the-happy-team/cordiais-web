@@ -90,7 +90,7 @@
     transition: filter 0.12s linear;
 
     &:hover {
-      filter: brightness(1.1);
+      filter: brightness(1.2);
       // filter: grayscale(0);
     }
   }
