@@ -18,7 +18,9 @@
 
 <div class="container">
   {#each faces as face (face.value)}
-    <div class="face" on:click={() => handleFaceClick(face)}>{face.value}</div>
+    <div class="face" on:click={() => handleFaceClick(face)}>
+      <div class="face-content">{face.value}</div>
+    </div>
   {/each}
 </div>
 
@@ -34,13 +36,12 @@
   }
 
   .face {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 10%;
-    height: 10%;
-    border: 1px solid #000;
+    padding-bottom: 10%;
+    border: 1px solid blueviolet;
     box-sizing: border-box;
     background-color: bisque;
     cursor: pointer;
@@ -49,5 +50,15 @@
     &:hover {
       background-color: antiquewhite;
     }
+  }
+
+  .face-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 </style>
