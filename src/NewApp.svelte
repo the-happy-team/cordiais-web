@@ -1,16 +1,28 @@
 <script lang="ts">
   import type { CordialType } from "./types/cordiais.types";
+  import { FilterType, OrderType } from "./types/cordiais.types";
 
   let allObras: Array<CordialType>;
-  let filteredObras: Array<CordialType>;
+  let orderedObras: Array<CordialType>;
   let selectedObra: CordialType;
+  let filterBy: FilterType = FilterType.NoFilter;
 
   const handleFaceClick = (o: CordialType) => {
-    filteredObras.forEach((item, i) => {
+    orderedObras.forEach((item, i) => {
       if (item.slug === o.slug) {
-        filteredObras.splice(i, 1);
-        filteredObras.unshift(null);
-        filteredObras[0] = o;
+        orderedObras.splice(i, 1);
+        orderedObras.unshift(null);
+        orderedObras[0] = o;
+      }
+    });
+  };
+
+  const reorderObras = (o: OrderType) => {
+    return orderedObras.sort((a, b) => {
+      if (o == OrderType.Date) {
+        return a.year.localeCompare(b.year);
+      } else {
+        return b.emotions[o] - a.emotions[o];
       }
     });
   };
@@ -26,8 +38,9 @@
     allObras = obrasList.filter(
       (obra) => "emotions" in obra && "face_rectangle" in obra
     );
-    filteredObras = [...allObras];
-    selectedObra = filteredObras[0];
+    orderedObras = [...allObras];
+    orderedObras = reorderObras(OrderType.Date);
+    selectedObra = orderedObras[0];
   }
 
   let getObrasPromise = getObras();
@@ -37,8 +50,12 @@
   <p>...waiting</p>
 {:then number}
   <div class="container">
-    {#each filteredObras as obra (obra.slug)}
-      <div class="face" on:click={() => handleFaceClick(obra)}>
+    {#each orderedObras as obra (obra.slug)}
+      <div
+        class="face"
+        class:color={filterBy == FilterType.NoFilter || obra[filterBy]}
+        on:click={() => handleFaceClick(obra)}
+      >
         <div
           class="face-content"
           style={`background-image: url('./imgs/faces/${obra.img}');`}
@@ -69,6 +86,13 @@
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;
+
+    filter: grayscale(1);
+    transition: filter 0.12s linear;
+
+    &.color {
+      filter: grayscale(0);
+    }
   }
 
   .face-content {
@@ -84,6 +108,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    filter: brightness(1);
     transition: filter 0.12s linear;
 
     &:hover {
