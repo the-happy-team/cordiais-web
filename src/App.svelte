@@ -1,6 +1,6 @@
 <script lang="ts">
   import { readable } from "svelte/store";
-  import FilterProtoypeApp from "./FilterProtoypeApp.svelte";
+  import PrototypeApp from "./prototype-app/PrototypeApp.svelte";
   import NewApp from "./NewApp.svelte";
 
   const hash = readable(window.location.hash, (set) => {
@@ -13,5 +13,5 @@
 {#if $hash.endsWith("#/new")}
   <NewApp />
 {:else}
-  <FilterProtoypeApp />
+  <PrototypeApp />
 {/if}

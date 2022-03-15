@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { CordialType } from "./types/cordiais.types";
-  import { EmotionOrder } from "./types/cordiais.types";
+  import type { CordialType } from "../types/cordiais.types";
+  import { EmotionOrder } from "../types/cordiais.types";
   import CordialViewer from "./CordialViewer.svelte";
 
   let allObras: Array<CordialType>;

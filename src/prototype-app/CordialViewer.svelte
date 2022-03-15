@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte/internal";
-  import type { CordialType } from "./types/cordiais.types";
-  import { EmotionOrder } from "./types/cordiais.types";
+  import type { CordialType } from "../types/cordiais.types";
+  import { EmotionOrder } from "../types/cordiais.types";
 
   export let obra: CordialType;
 
