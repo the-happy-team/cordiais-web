@@ -31,9 +31,9 @@ export type CordialType = {
 
 export enum FilterType {
   NoFilter = 0,
-  ByWoman = "byWoman",
-  ByMan = "byMan",
-  ByNudes = "nudes",
+  FemaleArtist = "byWoman",
+  MaleArtist = "byMan",
+  Nudes = "nudes",
 }
 
 export enum OrderType {

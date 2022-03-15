@@ -2,10 +2,11 @@
   import type { CordialType } from "./types/cordiais.types";
   import { FilterType, OrderType } from "./types/cordiais.types";
 
-  let allObras: Array<CordialType>;
-  let orderedObras: Array<CordialType>;
+  let allObras: Array<CordialType> = [];
+  let orderedObras: Array<CordialType> = [];
   let selectedObra: CordialType;
   let filterBy: FilterType = FilterType.NoFilter;
+  let orderBy: OrderType = OrderType.Date;
 
   const handleFaceClick = (o: CordialType) => {
     orderedObras.forEach((item, i) => {
@@ -39,11 +40,12 @@
       (obra) => "emotions" in obra && "face_rectangle" in obra
     );
     orderedObras = [...allObras];
-    orderedObras = reorderObras(OrderType.Date);
+    orderedObras = reorderObras(orderBy);
     selectedObra = orderedObras[0];
   }
 
   let getObrasPromise = getObras();
+  $: orderedObras = reorderObras(orderBy);
 </script>
 
 {#await getObrasPromise}
