@@ -1,22 +1,13 @@
 <script lang="ts">
   import type { CordialType } from "./types/cordiais.types";
   import { FilterType, OrderType } from "./types/cordiais.types";
+  import CordialModal from "./components/CordialModal.svelte";
 
   let allObras: Array<CordialType> = [];
   let orderedObras: Array<CordialType> = [];
   let selectedObra: CordialType;
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
-
-  const handleFaceClick = (o: CordialType) => {
-    orderedObras.forEach((item, i) => {
-      if (item.slug === o.slug) {
-        orderedObras.splice(i, 1);
-        orderedObras.unshift(null);
-        orderedObras[0] = o;
-      }
-    });
-  };
 
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
@@ -41,7 +32,6 @@
     );
     orderedObras = [...allObras];
     orderedObras = reorderObras(orderBy);
-    selectedObra = orderedObras[0];
   }
 
   let getObrasPromise = getObras();
@@ -56,7 +46,7 @@
       <div
         class="face"
         class:color={filterBy == FilterType.NoFilter || obra[filterBy]}
-        on:click={() => handleFaceClick(obra)}
+        on:click={() => (selectedObra = obra)}
       >
         <div
           class="face-content"
@@ -69,12 +59,15 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
+{#if selectedObra}
+  <CordialModal obra={selectedObra} />
+{/if}
+
 <style lang="scss">
   .container {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    height: 100vh;
     padding: 0;
     margin: 0;
   }
