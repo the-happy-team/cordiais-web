@@ -2,31 +2,27 @@
   import type { CordialType } from "../types/cordiais.types";
   import { EmotionOrder } from "../types/cordiais.types";
   import CordialCanvas from "./CordialCanvas.svelte";
+  import CordialObraImage from "./CordialObraImage.svelte";
   import EmotionSelection from "./EmotionSelection.svelte";
   import Modal from "./Modal.svelte";
 
   export let obra: CordialType;
-
-  const baseurl = window.location.href.replace(window.location.hash, "");
-
   let selectedEmotion = EmotionOrder[0];
 
   const handleClick = (e) => {
     e.stopPropagation();
   };
-
-  $: obraImgCss = `--obraImgUrl: url('${baseurl}imgs/obras/${obra.img}');`;
 </script>
 
 <Modal visible={obra != null} on:close={() => (obra = null)}>
   <div class="cordial-modal" on:click={handleClick}>
-    <div>{obra.artist} - {obra.title} ({obra.year})</div>
-    <div class="images-container">
-      <div class="image-container" style={obraImgCss}>
-        <div class="obra-image" />
+    <div class="modal-content">
+      <div class="image-container">
+        <CordialObraImage {obra} />
       </div>
 
       <div class="emotion-selection-container">
+        <div>{obra.artist} - {obra.title} ({obra.year})</div>
         <EmotionSelection {obra} bind:selectedEmotion />
       </div>
 
@@ -51,7 +47,7 @@
     overflow-y: hidden;
   }
 
-  .images-container {
+  .modal-content {
     width: 100%;
     flex-grow: 1;
     flex-basis: 0;
@@ -64,21 +60,12 @@
       flex-basis: 0;
       height: 100%;
       box-sizing: border-box;
-
-      .obra-image {
-        width: 100%;
-        height: 100%;
-        background-image: var(--obraImgUrl);
-        background-position: top left;
-        background-repeat: no-repeat;
-        background-size: contain;
-        box-sizing: border-box;
-      }
     }
 
     .emotion-selection-container {
       flex-grow: 1;
       flex-basis: 0;
+      height: 100%;
       box-sizing: border-box;
     }
 
