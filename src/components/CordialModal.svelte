@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { CordialType } from "../types/cordiais.types";
-  import { EmotionOrder } from "../types/cordiais.types";
+  import { CordialType, EmotionOrder } from "../types/cordiais.types";
   import CordialCanvas from "./CordialCanvas.svelte";
   import CordialObraImage from "./CordialObraImage.svelte";
   import EmotionSelection from "./EmotionSelection.svelte";
