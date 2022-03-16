@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { CordialType } from "./types/cordiais.types";
-  import { FilterType, OrderType } from "./types/cordiais.types";
+  import { CordialType, FilterType, OrderType } from "./types/cordiais.types";
+  import AboutModal from "./components/AboutModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
 
   let allObras: Array<CordialType> = [];
@@ -67,6 +67,8 @@
 {#if selectedObra}
   <CordialModal bind:obra={selectedObra} />
 {/if}
+
+<AboutModal />
 
 <style lang="scss">
   .container {
