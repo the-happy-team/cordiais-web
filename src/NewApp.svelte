@@ -5,7 +5,7 @@
 
   let allObras: Array<CordialType> = [];
   let orderedObras: Array<CordialType> = [];
-  let selectedObra: CordialType;
+  let selectedObra: CordialType = null;
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
 
@@ -27,9 +27,14 @@
     const obrasList = Object.keys(obras).map((o) => obras[o]);
     obrasList.sort((a, b) => a.artist.localeCompare(b.artist));
 
-    allObras = obrasList.filter(
-      (obra) => "emotions" in obra && "face_rectangle" in obra
-    );
+    allObras = obrasList.filter((obra) => {
+      return (
+        "emotions" in obra &&
+        "face_rectangle" in obra &&
+        obra.dimension.width &&
+        obra.dimension.height
+      );
+    });
     orderedObras = [...allObras];
     orderedObras = reorderObras(orderBy);
   }
@@ -60,7 +65,7 @@
 {/await}
 
 {#if selectedObra}
-  <CordialModal obra={selectedObra} />
+  <CordialModal bind:obra={selectedObra} />
 {/if}
 
 <style lang="scss">
