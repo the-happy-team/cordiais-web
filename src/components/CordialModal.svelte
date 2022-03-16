@@ -111,11 +111,13 @@
 
 <style lang="scss">
   .cordial-modal {
-    display: flex;
-    flex-direction: column;
+    position: relative;
     width: 80%;
     height: 80%;
-    margin: 10% auto;
+    top: 10%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     background-color: #fff;
     overflow-y: hidden;
