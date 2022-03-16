@@ -14,6 +14,23 @@
 </div>
 
 <style lang="scss">
+  .emotion-selection {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input[type="radio"] {
+    width: 0;
+  }
+
+  .emotion-option {
+    display: inline;
+    cursor: pointer;
+  }
+
   .emotion-option.selected {
     color: yellowgreen;
   }
