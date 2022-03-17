@@ -15,7 +15,6 @@
 
 <style lang="scss">
   .emotion-selection {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

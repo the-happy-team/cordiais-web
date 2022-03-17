@@ -1,6 +1,7 @@
 <script lang="ts">
   import { CordialType, EmotionOrder } from "../types/cordiais.types";
   import CordialCanvas from "./CordialCanvas.svelte";
+  import CordialInfo from "./CordialInfo.svelte";
   import CordialObraImage from "./CordialObraImage.svelte";
   import EmotionSelection from "./EmotionSelection.svelte";
   import Modal from "./Modal.svelte";
@@ -21,7 +22,8 @@
       </div>
 
       <div class="emotion-selection-container">
-        <div>{obra.artist} - {obra.title} ({obra.year})</div>
+        <CordialInfo {obra} />
+        <div class="space" />
         <EmotionSelection {obra} bind:selectedEmotion />
       </div>
 
@@ -62,10 +64,17 @@
     }
 
     .emotion-selection-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       flex-grow: 1;
       flex-basis: 0;
       height: 100%;
       box-sizing: border-box;
+
+      .space {
+        height: 5%;
+      }
     }
 
     .canvas-container {
