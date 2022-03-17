@@ -49,10 +49,10 @@ export enum OrderType {
 
 export const EmotionOrder: Array<string> = [
   "happiness",
-  "neutral",
   "surprise",
   "sadness",
   "disgust",
   "anger",
   "fear",
+  "neutral",
 ];

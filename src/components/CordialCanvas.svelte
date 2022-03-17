@@ -11,7 +11,7 @@
     if (!obraCanvas) return;
 
     const emo2color = (emo: string) => {
-      if (emo == "neutral") return "#7f7f7f";
+      if (emo == "background") return "#7f7f7f";
       else return "#000000";
     };
 
@@ -36,10 +36,10 @@
       obraBackground.height = obraBackground.width / obraRatio;
     }
 
-    obraBackground.x = (obraCanvas.width - obraBackground.width) / 2;
+    obraBackground.x = (obraCanvas.width - obraBackground.width);
     obraBackground.y = 0;
 
-    ctx.fillStyle = emo2color("neutral");
+    ctx.fillStyle = emo2color("background");
     ctx.fillRect(
       obraBackground.x,
       obraBackground.y,
