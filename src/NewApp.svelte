@@ -2,10 +2,15 @@
   import { CordialType, FilterType, OrderType } from "./types/cordiais.types";
   import AboutModal from "./components/AboutModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
+  import Menu from "./components/Menu.svelte";
 
-  let allObras: Array<CordialType> = [];
+  const baseurl = window.location.href.replace(window.location.hash, "");
+
   let orderedObras: Array<CordialType> = [];
   let selectedObra: CordialType = null;
+
+  let showAbout: boolean = false;
+
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
 
@@ -20,22 +25,20 @@
   };
 
   async function getObras() {
-    const baseurl = window.location.href.replace(window.location.hash, "");
     let response = await fetch(`${baseurl}data/obras.json`);
-    let obras = await response.json();
+    let obrasJson: { string: CordialType } = await response.json();
 
-    const obrasList = Object.keys(obras).map((o) => obras[o]);
-    obrasList.sort((a, b) => a.artist.localeCompare(b.artist));
-
-    allObras = obrasList.filter((obra) => {
-      return (
-        "emotions" in obra &&
-        "face_rectangle" in obra &&
-        obra.dimension.width &&
-        obra.dimension.height
-      );
-    });
-    orderedObras = [...allObras];
+    const obrasList = Object.entries(obrasJson)
+      .map(([_, v]) => v)
+      .filter((obra) => {
+        return (
+          "emotions" in obra &&
+          "face_rectangle" in obra &&
+          obra.dimension.width &&
+          obra.dimension.height
+        );
+      });
+    orderedObras = [...obrasList];
     orderedObras = reorderObras(orderBy);
   }
 
@@ -45,7 +48,7 @@
 
 {#await getObrasPromise}
   <p>...waiting</p>
-{:then number}
+{:then}
   <div class="container">
     {#each orderedObras as obra (obra.slug)}
       <div
@@ -55,7 +58,7 @@
       >
         <div
           class="face-content"
-          style={`background-image: url('./imgs/faces/${obra.img}');`}
+          style={`background-image: url('${baseurl}imgs/faces/${obra.img}');`}
         />
       </div>
     {/each}
@@ -64,11 +67,15 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
+<Menu bind:showAbout />
+
 {#if selectedObra}
   <CordialModal bind:obra={selectedObra} />
 {/if}
 
-<AboutModal />
+{#if showAbout}
+  <AboutModal bind:showAbout />
+{/if}
 
 <style lang="scss">
   .container {
