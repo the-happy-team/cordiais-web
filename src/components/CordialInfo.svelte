@@ -2,19 +2,26 @@
   import type { CordialType } from "../types/cordiais.types";
 
   export let obra: CordialType;
-
-  const splitTitle = (t) => {
-  // TODO: split tile
-  return t;
-  };
+  const itemsToShow = [
+    "artist",
+    "title",
+    "year",
+    "medium",
+    "dimension",
+    "collection",
+  ];
 </script>
 
 <div class="cordial-info">
-  <div>{obra.artist}</div>
-  <div>{splitTitle(obra.title)}, {obra.year}</div>
-  <div>{obra.medium}</div>
-  <div>{obra.dimension.height} x {obra.dimension.width} {obra.dimension.unit}</div>
-  <div>{obra.collection}</div>
+  {#each itemsToShow as item (item)}
+    <div class="obra-item">
+      {#if item == "dimension"}
+        {obra[item].height} x {obra[item].width} {obra[item].unit}
+      {:else}
+        {obra[item]}
+      {/if}
+    </div>
+  {/each}
 </div>
 
 <style lang="scss">
@@ -23,5 +30,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .obra-item {
+    text-align: center;
   }
 </style>
