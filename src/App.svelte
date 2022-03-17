@@ -10,8 +10,8 @@
   });
 </script>
 
-{#if $hash.endsWith("#/new")}
-  <NewApp />
-{:else}
+{#if $hash.endsWith("#/pesquisa") || $hash.endsWith("#pesquisa")}
   <PrototypeApp />
+{:else}
+  <NewApp />
 {/if}
