@@ -1,14 +1,17 @@
 <script lang="ts">
   import { CordialType, EmotionOrder } from "../types/cordiais.types";
+  import { emotions as _emotions } from "../langs/strings";
   export let selectedEmotion: string;
   export let obra: CordialType;
+
+  const emotions = _emotions["pt"];
 </script>
 
 <div class="emotion-selection">
   {#each EmotionOrder as e}
     <label class="emotion-option" class:selected={selectedEmotion == e}>
       <input type="radio" bind:group={selectedEmotion} value={e} />
-      {`${e}: ${obra.emotions[e]}`}
+      {`${emotions[e]}: ${obra.emotions[e]}`}
     </label>
   {/each}
 </div>
