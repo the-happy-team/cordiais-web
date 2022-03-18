@@ -20,6 +20,18 @@ export const emotions = {
 };
 
 export const menu = {
-  en: {},
-  pt: {},
+  en: {
+    about: "about",
+    sort: "arrange by emotion",
+    highlight: "highlight",
+    texts: "texts",
+    contact: "contact",
+  },
+  pt: {
+    about: "sobre",
+    sort: "organizar por",
+    highlight: "destaques",
+    texts: "textos",
+    contact: "contato",
+  },
 };

@@ -1,68 +1,66 @@
 <script lang="ts">
-  import {
-    EmotionOrder,
-    FilterType,
-    OrderType,
-  } from "../types/cordiais.types";
+  import { EmotionOrder, FilterType, OrderType } from "../types/cordiais.types";
+  import { menu as _menu } from "../langs/strings";
+  import { onMount } from "svelte";
 
   export let showAbout = false;
+
+  const menu = _menu["pt"];
+
+  let menuButton: HTMLDivElement;
+  let menuButtonHeight: number;
+
+  onMount(() => {
+    menuButtonHeight = menuButton.offsetHeight;
+  });
+
+  $: menuPosCss = `--menuButtonHeight: ${menuButtonHeight}px;`;
 </script>
 
-<div class="menu">
-  <div class="menu-button-wrapper">
-    <div class="menu-button" on:click={() => (showAbout = true)}>about</div>
+<div class="menu" style={menuPosCss}>
+  <div
+    class="menu-button"
+    bind:this={menuButton}
+    on:click={() => (showAbout = true)}
+  >
+    {menu.about}
   </div>
-  <div class="menu-button-wrapper">
-    <div class="menu-button disabled" on:click={() => {}}>arrage by emotions</div>
-  </div>
-  <div class="menu-button-wrapper">
-    <div class="menu-button disabled" on:click={() => {}}>highlight</div>
-  </div>
-  <div class="menu-button-wrapper">
-    <div class="menu-button disabled" on:click={() => {}}>texts</div>
-  </div>
-  <div class="menu-button-wrapper">
-    <div class="menu-button disabled" on:click={() => {}}>contact</div>
-  </div>
+  <div class="menu-button disabled" on:click={() => {}}>{menu.sort}</div>
+  <div class="menu-button disabled" on:click={() => {}}>{menu.highlight}</div>
+  <div class="menu-button disabled" on:click={() => {}}>{menu.texts}</div>
+  <div class="menu-button disabled" on:click={() => {}}>{menu.contact}</div>
 </div>
 
 <style lang="scss">
   .menu {
     position: absolute;
-    top: 0;
+    top: calc(100vw * 0.1 - var(--menuButtonHeight));
     left: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    height: calc(100vw * 0.5);
+    height: calc(100vw * 0.4 + var(--menuButtonHeight));
     padding: 0 10%;
     box-sizing: border-box;
     pointer-events: none;
   }
 
-  .menu-button-wrapper {
-    flex-basis: 0;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  .menu-button {
+    padding: 6px 8px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    pointer-events: all;
+    text-transform: uppercase;
 
-    .menu-button {
-      padding: 6px 8px;
-      font-size: 14px;
-      background-color: #fff;
-      color: #000;
-      cursor: pointer;
-      pointer-events: all;
-      text-transform: uppercase;
-
-      &.disabled {
-        cursor: initial;
-        background-color: #bbb;
-        opacity: 0.6;
-      }
+    &.disabled {
+      cursor: initial;
+      background-color: #bbb;
+      opacity: 0.6;
+      pointer-events: none;
     }
   }
 </style>
