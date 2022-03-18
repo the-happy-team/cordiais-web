@@ -5,6 +5,7 @@
   export let showAbout = false;
   export let showContact = false;
   export let showOrderMenu = false;
+  export let showFilterMenu = false;
 
   const menu = _menu["pt"];
 
@@ -17,7 +18,7 @@
     {menu.about}
   </MenuItem>
   <MenuItem on:click={() => (showOrderMenu = true)}>{menu.sort}</MenuItem>
-  <MenuItem on:click={() => {}} disabled>{menu.highlight}</MenuItem>
+  <MenuItem on:click={() => (showFilterMenu = true)}>{menu.highlight}</MenuItem>
   <MenuItem on:click={() => {}} disabled>{menu.texts}</MenuItem>
   <MenuItem on:click={() => (showContact = true)}>{menu.contact}</MenuItem>
 </div>

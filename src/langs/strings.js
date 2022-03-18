@@ -33,6 +33,9 @@ export const menu = {
     anger: "anger",
     fear: "fear",
     neutral: "neutral",
+    FemaleArtist: "by female artist",
+    MaleArtist: "by male artist",
+    Nudes: "by nudes",
   },
   pt: {
     about: "sobre",
@@ -47,5 +50,8 @@ export const menu = {
     anger: "raiva",
     fear: "medo",
     neutral: "neutro",
+    FemaleArtist: "por artistas mulheres",
+    MaleArtist: "por artistas homens",
+    Nudes: "por nudes",
   },
 };

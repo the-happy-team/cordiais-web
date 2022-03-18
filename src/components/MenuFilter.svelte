@@ -1,25 +1,29 @@
 <script lang="ts">
-  import { EmotionOrder, OrderType } from "../types/cordiais.types";
+  import { FilterType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
   import MenuItem from "./MenuItem.svelte";
 
-  export let orderBy: OrderType;
+  export let filterBy: FilterType;
 
   const menu = _menu["pt"];
 
-  let itemHeight: Array<number> = EmotionOrder.map((_, i) => i);
+  let filters = Object.keys(FilterType).filter(
+    (v) => FilterType[v] != FilterType.NoFilter
+  );
+
+  let itemHeight: Array<number> = filters.map((_, i) => i);
 
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px;`;
 </script>
 
 <div class="menu" style={menuPosCss}>
-  {#each EmotionOrder as emo, i (emo)}
+  {#each filters as fil, i (fil)}
     <MenuItem
-      on:click={() => (orderBy = OrderType[emo])}
+      on:click={() => (filterBy = FilterType[fil])}
       bind:height={itemHeight[i]}
-      selected={orderBy == OrderType[emo]}
+      selected={filterBy == FilterType[fil]}
     >
-      {menu[emo]}
+      {menu[fil]}
     </MenuItem>
   {/each}
 </div>
@@ -32,7 +36,7 @@
     justify-content: space-between;
     align-items: flex-start;
     position: absolute;
-    top: calc(20vw - var(--menuButtonHeight));
+    top: calc(50vw - var(--menuButtonHeight));
     left: 30%;
     padding: 0;
     box-sizing: border-box;

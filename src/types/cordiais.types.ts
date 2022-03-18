@@ -30,7 +30,7 @@ export type CordialType = {
 };
 
 export enum FilterType {
-  NoFilter = 0,
+  NoFilter = "none",
   FemaleArtist = "byWoman",
   MaleArtist = "byMan",
   Nudes = "nudes",
