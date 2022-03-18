@@ -1,26 +1,26 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
 
-  export let showAbout = false;
+  export let showContact = false;
 
   const handleClick = (e) => {
     e.stopPropagation();
   };
 </script>
 
-<Modal visible={showAbout} on:close={() => {showAbout = false}}>
-  <div class="about-modal" on:click={handleClick}>
-    ABOUT
+<Modal visible={showContact} on:close={() => {showContact = false}}>
+  <div class="contact-modal" on:click={handleClick}>
+    CONTACT
   </div>
 </Modal>
 
 <style lang="scss">
-  .about-modal {
+  .contact-modal {
     position: relative;
     width: 50%;
-    height: 90%;
+    height: 50%;
     top: 5%;
-    margin-left: 33%;
+    margin-left: 45%;
     right: 0;
     display: flex;
     flex-direction: column;

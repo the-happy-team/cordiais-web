@@ -1,6 +1,7 @@
 <script lang="ts">
   import { CordialType, FilterType, OrderType } from "./types/cordiais.types";
   import AboutModal from "./components/AboutModal.svelte";
+  import ContactModal from "./components/ContactModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
   import Menu from "./components/Menu.svelte";
 
@@ -10,6 +11,7 @@
   let selectedObra: CordialType = null;
 
   let showAbout: boolean = false;
+  let showContact: boolean = false;
 
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
@@ -67,7 +69,7 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<Menu bind:showAbout />
+<Menu bind:showAbout bind:showContact />
 
 {#if selectedObra}
   <CordialModal bind:obra={selectedObra} />
@@ -75,6 +77,10 @@
 
 {#if showAbout}
   <AboutModal bind:showAbout />
+{/if}
+
+{#if showContact}
+  <ContactModal bind:showContact />
 {/if}
 
 <style lang="scss">
