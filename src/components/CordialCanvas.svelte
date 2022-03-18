@@ -70,10 +70,7 @@
     obraCanvas.setAttribute("height", `${2 * obraCanvas.offsetHeight}`);
   });
 
-  $: if (selectedEmotion) {
-    console.log("emo changed");
-    drawCanvas(obra.emotions[selectedEmotion]);
-  }
+  $: drawCanvas(obra.emotions[selectedEmotion]);
 </script>
 
 <canvas class="obra-canvas" bind:this={obraCanvas} />
