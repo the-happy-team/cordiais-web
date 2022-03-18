@@ -38,13 +38,13 @@ export enum FilterType {
 
 export enum OrderType {
   Date = "year",
-  Happiness = "happiness",
-  Neutral = "neutral",
-  Surprise = "surprise",
-  Sadness = "sadness",
-  Disgust = "disgust",
-  Anger = "anger",
-  Fear = "fear",
+  happiness = "happiness",
+  neutral = "neutral",
+  surprise = "surprise",
+  sadness = "sadness",
+  disgust = "disgust",
+  anger = "anger",
+  fear = "fear",
 }
 
 export const EmotionOrder: Array<string> = [

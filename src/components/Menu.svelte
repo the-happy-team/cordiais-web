@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { EmotionOrder, FilterType, OrderType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
   import MenuItem from "./MenuItem.svelte";
 
   export let showAbout = false;
   export let showContact = false;
+  export let showOrderMenu = false;
 
   const menu = _menu["pt"];
 
@@ -16,7 +16,7 @@
   <MenuItem on:click={() => (showAbout = true)} bind:height={menuButtonHeight}>
     {menu.about}
   </MenuItem>
-  <MenuItem on:click={() => {}} disabled>{menu.sort}</MenuItem>
+  <MenuItem on:click={() => (showOrderMenu = true)}>{menu.sort}</MenuItem>
   <MenuItem on:click={() => {}} disabled>{menu.highlight}</MenuItem>
   <MenuItem on:click={() => {}} disabled>{menu.texts}</MenuItem>
   <MenuItem on:click={() => (showContact = true)}>{menu.contact}</MenuItem>

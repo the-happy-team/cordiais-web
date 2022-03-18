@@ -4,6 +4,7 @@
   import ContactModal from "./components/ContactModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
   import Menu from "./components/Menu.svelte";
+  import MenuOrder from "./components/MenuOrder.svelte";
 
   const baseurl = window.location.href.replace(window.location.hash, "");
 
@@ -12,6 +13,7 @@
 
   let showAbout: boolean = false;
   let showContact: boolean = false;
+  let showOrderMenu: boolean = false;
 
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
@@ -69,7 +71,11 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<Menu bind:showAbout bind:showContact />
+<Menu bind:showAbout bind:showContact bind:showOrderMenu />
+
+{#if showOrderMenu}
+  <MenuOrder bind:orderBy />
+{/if}
 
 {#if selectedObra}
   <CordialModal bind:obra={selectedObra} />
