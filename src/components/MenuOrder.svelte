@@ -17,6 +17,7 @@
     <MenuItem
       on:click={() => (orderBy = OrderType[emo])}
       bind:height={itemHeight[i]}
+      selected={orderBy == emo}
     >
       {menu[emo]}
     </MenuItem>

@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
 
   export let disabled = false;
+  export let selected = false;
   export let height = 0;
 
   let el: HTMLDivElement;
@@ -11,7 +12,7 @@
   });
 </script>
 
-<div class="menu-item" class:disabled on:click bind:this={el}>
+<div class="menu-item" class:disabled class:selected on:click bind:this={el}>
   <slot />
 </div>
 
@@ -30,6 +31,10 @@
       background-color: #bbb;
       opacity: 0.6;
       pointer-events: none;
+    }
+
+    &.selected {
+      color: yellowgreen;
     }
   }
 </style>
