@@ -33,21 +33,20 @@
 
 <style lang="scss">
   .menu {
-    position: absolute;
-    top: calc(100vw * 0.1 - var(--menuButtonHeight));
-    left: 0;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
-    width: 100%;
-    height: calc(100vw * 0.4 + var(--menuButtonHeight));
+    position: absolute;
+    top: 0;
     padding: 0 10%;
     box-sizing: border-box;
     pointer-events: none;
   }
 
   .menu-button {
+    margin-top: calc(100vw * 0.1 - var(--menuButtonHeight));
     padding: 6px 8px;
     font-size: 14px;
     background-color: #fff;
