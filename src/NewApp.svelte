@@ -23,7 +23,7 @@
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
       if (o == OrderType.Date) {
-        return a.year.localeCompare(b.year);
+        return a.year_sort - b.year_sort;
       } else {
         return b.emotions[o] - a.emotions[o];
       }
