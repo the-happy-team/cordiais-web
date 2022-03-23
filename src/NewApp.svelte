@@ -40,8 +40,8 @@
         return (
           "emotions" in obra &&
           "face_rectangle" in obra &&
-          obra.dimension.width &&
-          obra.dimension.height
+          obra.marcantonio &&
+          obra.artist_death < 1950
         );
       });
     orderedObras = [...obrasList];
