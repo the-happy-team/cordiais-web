@@ -13,13 +13,17 @@
 
   let itemHeight: Array<number> = filters.map((_, i) => i);
 
+  const handleItemClick = (f: FilterType) => {
+    filterBy = filterBy == f ? FilterType.NoFilter : f;
+  };
+
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px;`;
 </script>
 
 <div class="menu" style={menuPosCss}>
   {#each filters as fil, i (fil)}
     <MenuItem
-      on:click={() => (filterBy = FilterType[fil])}
+      on:click={() => handleItemClick(FilterType[fil])}
       bind:height={itemHeight[i]}
       selected={filterBy == FilterType[fil]}
     >
