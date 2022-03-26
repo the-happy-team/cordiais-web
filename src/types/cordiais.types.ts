@@ -11,6 +11,7 @@ export type EmotionType = {
 export type CordialType = {
   title: string;
   year: string;
+  year_sort: number;
   medium: string;
   artist: string;
   dimension: { width: number; height: number; unit: string };
@@ -37,7 +38,7 @@ export enum FilterType {
 }
 
 export enum OrderType {
-  Date = "year",
+  Date = "year_sort",
   happiness = "happiness",
   neutral = "neutral",
   surprise = "surprise",
