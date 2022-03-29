@@ -14,7 +14,7 @@
   };
 </script>
 
-<Modal visible={obra != null} on:close={() => (obra = null)}>
+<Modal on:close>
   <div class="cordial-modal" on:click={handleClick}>
     <div class="modal-content">
       <div class="image-container">

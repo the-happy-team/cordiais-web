@@ -1,17 +1,13 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
 
-  export let showAbout = false;
-
   const handleClick = (e) => {
     e.stopPropagation();
   };
 </script>
 
-<Modal visible={showAbout} on:close={() => {showAbout = false}}>
-  <div class="about-modal" on:click={handleClick}>
-    ABOUT
-  </div>
+<Modal on:close>
+  <div class="about-modal" on:click={handleClick}>ABOUT</div>
 </Modal>
 
 <style lang="scss">

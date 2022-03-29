@@ -22,6 +22,14 @@
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
 
+  const closeModal = () => {
+    selectedMenuItem = MenuItemType.None;
+  }
+
+  const closeCordial = () => {
+    selectedObra = null;
+  }
+
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
       if (o == OrderType.Date) {
@@ -88,15 +96,7 @@
 {/if}
 
 {#if selectedObra}
-  <CordialModal bind:obra={selectedObra} />
-{/if}
-
-{#if showAbout}
-  <AboutModal bind:showAbout />
-{/if}
-
-{#if showContact}
-  <ContactModal bind:showContact />
+  <CordialModal on:close={closeCordial} bind:obra={selectedObra} />
 {/if}
 
 <style lang="scss">
