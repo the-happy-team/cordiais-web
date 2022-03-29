@@ -16,27 +16,6 @@
     );
   };
 
-  const emo2color = (emo) => {
-    if (emo == "neutral") return "#7f7f7f";
-    else return "#000000";
-    switch (emo) {
-      case "happiness":
-        return "#FFEA00";
-      case "surprise":
-        return "#6495ED";
-      case "sadness":
-        return "#1434A4";
-      case "disgust":
-        return "#BEA343";
-      case "anger":
-        return "#990000";
-      case "fear":
-        return "#600000";
-      default:
-        return "#7f7f7f";
-    }
-  };
-
   const drawCanvas = (_) => {
     if (!obraCanvas) return;
 
@@ -65,7 +44,7 @@
     // obraBackground.y = (obraCanvas.height - obraBackground.height) / 2;
     obraBackground.y = 0;
 
-    ctx.fillStyle = emo2color("neutral");
+    ctx.fillStyle = "#7f7f7f";
     ctx.fillRect(
       obraBackground.x,
       obraBackground.y,
@@ -77,10 +56,7 @@
     const obWpH = obraBackground.width + obraBackground.height;
     const obWH = obraBackground.width * obraBackground.height;
     const emoNorm = 1.0 - 0.01 * selectedAmout;
-    const borderWidth =
-      selectedEmotion == "neutral"
-        ? 0
-        : 0.25 * (obWpH - Math.sqrt(obWpH * obWpH - 4 * emoNorm * obWH));
+    const borderWidth = 0.25 * (obWpH - Math.sqrt(obWpH * obWpH - 4 * emoNorm * obWH));
 
     const obraColor = {
       height: obraBackground.height - 2 * borderWidth,
@@ -89,7 +65,7 @@
       y: obraBackground.y + borderWidth,
     };
 
-    ctx.fillStyle = emo2color(selectedEmotion);
+    ctx.fillStyle = "#000000";
     ctx.fillRect(obraColor.x, obraColor.y, obraColor.width, obraColor.height);
 
     // calculate color dimensions
