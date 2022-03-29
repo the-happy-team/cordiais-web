@@ -11,7 +11,7 @@
   {#each EmotionOrder as e}
     <label class="emotion-option" class:selected={selectedEmotion == e}>
       <input type="radio" bind:group={selectedEmotion} value={e} />
-      {`${emotions[e]}: ${obra.emotions[e]} %`}
+      {`${emotions[e]}: ${(obra.emotions[e]).toFixed(2)} %`}
     </label>
   {/each}
 </div>
