@@ -1,26 +1,43 @@
 <script lang="ts">
+  import { MenuItemType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
   import MenuItem from "./MenuItem.svelte";
 
-  export let showAbout = false;
-  export let showContact = false;
-  export let showOrderMenu = false;
-  export let showFilterMenu = false;
+  export let selectedItem: MenuItemType;
 
   const menu = _menu["pt"];
+
+  const handleMenuSelection = (i: MenuItemType) => {
+    selectedItem = selectedItem == i ? MenuItemType.None : i;
+  };
 
   let menuButtonHeight: number;
   $: menuPosCss = `--menuButtonHeight: ${menuButtonHeight}px;`;
 </script>
 
 <div class="menu" style={menuPosCss}>
-  <MenuItem on:click={() => (showAbout = true)} bind:height={menuButtonHeight}>
+  <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.About)}
+    bind:height={menuButtonHeight}
+  >
     {menu.about}
   </MenuItem>
-  <MenuItem on:click={() => (showOrderMenu = true)}>{menu.sort}</MenuItem>
-  <MenuItem on:click={() => (showFilterMenu = true)}>{menu.highlight}</MenuItem>
-  <MenuItem on:click={() => {}} disabled>{menu.texts}</MenuItem>
-  <MenuItem on:click={() => (showContact = true)}>{menu.contact}</MenuItem>
+
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.OrderBy)}>
+    {menu.sort}
+  </MenuItem>
+
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.FilterBy)}>
+    {menu.highlight}
+  </MenuItem>
+
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Texts)} disabled>
+    {menu.texts}
+  </MenuItem>
+
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Contact)}>
+    {menu.contact}
+  </MenuItem>
 </div>
 
 <style lang="scss">

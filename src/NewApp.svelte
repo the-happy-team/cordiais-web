@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { CordialType, FilterType, OrderType } from "./types/cordiais.types";
+  import {
+    CordialType,
+    FilterType,
+    OrderType,
+    MenuItemType,
+  } from "./types/cordiais.types";
   import AboutModal from "./components/AboutModal.svelte";
   import ContactModal from "./components/ContactModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
@@ -12,10 +17,7 @@
   let orderedObras: Array<CordialType> = [];
   let selectedObra: CordialType = null;
 
-  let showAbout: boolean = false;
-  let showContact: boolean = false;
-  let showOrderMenu: boolean = false;
-  let showFilterMenu: boolean = false;
+  let selectedMenuItem = MenuItemType.None;
 
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
@@ -73,14 +75,16 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<Menu bind:showAbout bind:showContact bind:showOrderMenu bind:showFilterMenu />
+<Menu bind:selectedItem={selectedMenuItem} />
 
-{#if showOrderMenu}
+{#if selectedMenuItem == MenuItemType.About}
+  <AboutModal on:close={closeModal} />
+{:else if selectedMenuItem == MenuItemType.OrderBy}
   <MenuOrder bind:orderBy />
-{/if}
-
-{#if showFilterMenu}
+{:else if selectedMenuItem == MenuItemType.FilterBy}
   <MenuFilter bind:filterBy />
+{:else if selectedMenuItem == MenuItemType.Contact}
+  <ContactModal on:close={closeModal} />
 {/if}
 
 {#if selectedObra}

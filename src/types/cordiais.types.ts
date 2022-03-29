@@ -57,3 +57,12 @@ export const EmotionOrder: Array<string> = [
   "fear",
   "neutral",
 ];
+
+export enum MenuItemType {
+  None = 0,
+  About,
+  OrderBy,
+  FilterBy,
+  Texts,
+  Contact
+}
