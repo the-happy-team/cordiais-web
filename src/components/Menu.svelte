@@ -4,6 +4,8 @@
   import MenuItem from "./MenuItem.svelte";
 
   export let selectedItem: MenuItemType;
+  export let orderByWidth = 0;
+  export let filterByWidth = 0;
 
   const menu = _menu["pt"];
 
@@ -23,11 +25,17 @@
     {menu.about}
   </MenuItem>
 
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.OrderBy)}>
+  <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.OrderBy)}
+    bind:width={orderByWidth}
+  >
     {menu.sort}
   </MenuItem>
 
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.FilterBy)}>
+  <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.FilterBy)}
+    bind:width={filterByWidth}
+  >
     {menu.highlight}
   </MenuItem>
 

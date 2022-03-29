@@ -4,6 +4,7 @@
   import MenuItem from "./MenuItem.svelte";
 
   export let filterBy: FilterType;
+  export let left = 0;
 
   const menu = _menu["pt"];
 
@@ -17,7 +18,7 @@
     filterBy = filterBy == f ? FilterType.NoFilter : f;
   };
 
-  $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px;`;
+  $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
 <div class="menu" style={menuPosCss}>
@@ -40,8 +41,8 @@
     justify-content: space-between;
     align-items: flex-start;
     position: absolute;
-    top: calc(50vw - var(--menuButtonHeight));
-    left: 30%;
+    top: calc(30vw - var(--menuButtonHeight));
+    left: calc(10vw + var(--menuPosLeft) - 1px);
     padding: 0;
     box-sizing: border-box;
     pointer-events: none;
