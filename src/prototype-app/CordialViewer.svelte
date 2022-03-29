@@ -10,13 +10,15 @@
   let colorHeight: string = "0";
   let obraCanvas: HTMLCanvasElement;
 
+  let vizType: string = "border";
+
   const selectTopEmotion = (o: CordialType) => {
     selectedEmotion = EmotionOrder.reduce((a, b) =>
       o.emotions[a] > o.emotions[b] ? a : b
     );
   };
 
-  const drawCanvas = (_) => {
+  const drawCanvas = (vtype, _) => {
     if (!obraCanvas) return;
 
     // clear canvas
@@ -56,7 +58,8 @@
     const obWpH = obraBackground.width + obraBackground.height;
     const obWH = obraBackground.width * obraBackground.height;
     const emoNorm = 1.0 - 0.01 * selectedAmout;
-    const borderWidth = 0.25 * (obWpH - Math.sqrt(obWpH * obWpH - 4 * emoNorm * obWH));
+    const borderWidth =
+      0.25 * (obWpH - Math.sqrt(obWpH * obWpH - 4 * emoNorm * obWH));
 
     const obraColor = {
       height: obraBackground.height - 2 * borderWidth,
@@ -65,25 +68,34 @@
       y: obraBackground.y + borderWidth,
     };
 
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(obraColor.x, obraColor.y, obraColor.width, obraColor.height);
-
     // calculate color dimensions
-    const cmToPixel = obra.dimension.width / obraBackground.width;
-    const borderWidthCm = borderWidth * cmToPixel;
+    const cmPerPixel = obra.dimension.width / obraBackground.width;
+    const borderWidthCm = borderWidth * cmPerPixel;
     colorWidth = (obra.dimension.width - 2 * borderWidthCm).toFixed(2);
     colorHeight = (obra.dimension.height - 2 * borderWidthCm).toFixed(2);
+
+    if (vtype == "square") {
+      obraColor.height = Math.sqrt(0.01 * selectedAmout * obWH);
+      obraColor.width = obraColor.height;
+      obraColor.x = obraBackground.x + (obraBackground.width - obraColor.width) / 2;
+      obraColor.y = obraBackground.y + (obraBackground.height - obraColor.height) / 2;
+      colorWidth = (obraColor.width * cmPerPixel).toFixed(2);
+      colorHeight = (obraColor.height * cmPerPixel).toFixed(2);
+    }
+
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(obraColor.x, obraColor.y, obraColor.width, obraColor.height);
   };
 
   onMount(() => {
     obraCanvas.setAttribute("width", `${2 * obraCanvas.offsetWidth}`);
     obraCanvas.setAttribute("height", `${2 * obraCanvas.offsetHeight}`);
-    drawCanvas(selectedAmout);
+    drawCanvas(vizType, selectedAmout);
   });
 
   $: selectTopEmotion(obra);
   $: selectedAmout = obra.emotions[selectedEmotion];
-  $: drawCanvas(selectedAmout);
+  $: drawCanvas(vizType, selectedAmout);
 </script>
 
 <div class="cordial">
@@ -96,18 +108,32 @@
 
   <div class="collection">{obra.collection}</div>
 
-  <div class="emotion-list">
-    {#each EmotionOrder as e}
-      <label class="emotion-option" class:selected={selectedEmotion == e}>
-        <input
-          type="radio"
-          bind:group={selectedEmotion}
-          name="emotions"
-          value={e}
-        />
-        {`${e}: ${obra.emotions[e]}`}
+  <div class="emotion-list-container">
+    <div class="emotion-list">
+      {#each EmotionOrder as e}
+        <label class="emotion-option" class:selected={selectedEmotion == e}>
+          <input
+            type="radio"
+            bind:group={selectedEmotion}
+            name="emotions"
+            value={e}
+          />
+          {`${e}: ${obra.emotions[e]}`}
+        </label>
+      {/each}
+    </div>
+    <div class="viz-type-selection">
+      Tipo de Visualização:
+      <label>
+        <input type=radio bind:group={vizType} name="vizType" value={"border"}>
+        Bordas Iguais
       </label>
-    {/each}
+
+      <label>
+        <input type=radio bind:group={vizType} name="vizType" value={"square"}>
+        Quadrado
+      </label>
+    </div>
   </div>
 
   <div class="images-container">
@@ -137,9 +163,21 @@
       color: hotpink;
     }
 
-    .emotion-list {
-      width: max-content;
+    .emotion-list-container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       margin: 10px 0;
+
+      .emotion-list {
+        width: max-content;
+      }
+
+      .viz-type-selection {
+        margin-left: 12px;
+      }
     }
 
     .emotion-option {
