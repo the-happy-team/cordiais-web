@@ -8,7 +8,7 @@
   let obrasReady = false;
   let filterNudes = false;
   let filterMarcantonio = false;
-  let filterDimensions = false;
+  let filterDimensions = "cm";
   let filterCollection = "";
 
   const deathFilter = {
@@ -39,6 +39,7 @@
     allObras = obras.filter((obra) => "emotions" in obra);
     filteredObras = [...allObras];
     selectedObra = filteredObras[0];
+    updateFiltered();
     obrasReady = true;
 
     [...new Set(filteredObras.map((o) => o.collection))].forEach((c) =>
@@ -54,9 +55,10 @@
     if (filterMarcantonio) {
       filteredObras = filteredObras.filter((obra) => obra.marcantonio);
     }
+
     if (filterDimensions) {
       filteredObras = filteredObras.filter(
-        (obra) => obra.dimension.height && obra.dimension.width
+        (obra) => obra.dimension.unit == filterDimensions
       );
     }
 
@@ -94,12 +96,29 @@
     Nudes
   </div>
   <div class="filter-group">
-    <input
-      type="checkbox"
-      bind:checked={filterDimensions}
-      on:change={updateFiltered}
-    />
-    Dimensões
+    <label>
+      <input
+        type="radio"
+        bind:group={filterDimensions}
+        name="dimension"
+        value={"cm"}
+        on:change={updateFiltered}
+      />
+      cm
+    </label>
+
+    <div style="width:20px;" />
+
+    <label>
+      <input
+        type="radio"
+        bind:group={filterDimensions}
+        name="dimension"
+        value={"px"}
+        on:change={updateFiltered}
+      />
+      pixel
+    </label>
   </div>
 
   <div class="filter-group">
