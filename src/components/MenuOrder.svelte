@@ -27,7 +27,6 @@
 
 <style lang="scss">
   .menu {
-    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
