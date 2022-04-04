@@ -26,11 +26,11 @@
 
   const closeModal = () => {
     selectedMenuItem = MenuItemType.None;
-  }
+  };
 
   const closeCordial = () => {
     selectedObra = null;
-  }
+  };
 
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
@@ -85,7 +85,11 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<Menu bind:selectedItem={selectedMenuItem} bind:filterByWidth bind:orderByWidth />
+<Menu
+  bind:selectedItem={selectedMenuItem}
+  bind:filterByWidth
+  bind:orderByWidth
+/>
 
 {#if selectedMenuItem == MenuItemType.About}
   <AboutModal on:close={closeModal} />
@@ -98,7 +102,7 @@
 {/if}
 
 {#if selectedObra}
-  <CordialModal on:close={closeCordial} bind:obra={selectedObra} />
+  <CordialModal on:close={closeCordial} bind:obra={selectedObra} bind:orderBy />
 {/if}
 
 <style lang="scss">

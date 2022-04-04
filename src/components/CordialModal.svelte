@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { CordialType, EmotionOrder } from "../types/cordiais.types";
+  import {
+    CordialType,
+    EmotionOrder,
+    OrderType,
+  } from "../types/cordiais.types";
   import CordialCanvas from "./CordialCanvas.svelte";
   import CordialInfo from "./CordialInfo.svelte";
   import CordialObraImage from "./CordialObraImage.svelte";
@@ -7,11 +11,14 @@
   import Modal from "./Modal.svelte";
 
   export let obra: CordialType;
-  let selectedEmotion = EmotionOrder[0];
+  export let orderBy: OrderType = OrderType.happiness;
 
   const handleClick = (e) => {
     e.stopPropagation();
   };
+
+  $: selectedEmotion =
+    orderBy == OrderType.Date ? EmotionOrder[0] : OrderType[orderBy];
 </script>
 
 <Modal on:close>
