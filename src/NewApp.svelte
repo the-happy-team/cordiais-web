@@ -6,7 +6,7 @@
     MenuItemType,
   } from "./types/cordiais.types";
   import AboutModal from "./components/AboutModal.svelte";
-  import ContactModal from "./components/ContactModal.svelte";
+  import ProjectModal from "./components/ProjectModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
   import Menu from "./components/Menu.svelte";
   import MenuOrder from "./components/MenuOrder.svelte";
@@ -91,14 +91,14 @@
   bind:orderByWidth
 />
 
-{#if selectedMenuItem == MenuItemType.About}
-  <AboutModal on:close={closeModal} />
+{#if selectedMenuItem == MenuItemType.Project}
+  <ProjectModal on:close={closeModal} />
 {:else if selectedMenuItem == MenuItemType.OrderBy}
   <MenuOrder bind:orderBy left={orderByWidth} />
 {:else if selectedMenuItem == MenuItemType.FilterBy}
   <MenuFilter bind:filterBy left={filterByWidth} />
-{:else if selectedMenuItem == MenuItemType.Contact}
-  <ContactModal on:close={closeModal} />
+{:else if selectedMenuItem == MenuItemType.About}
+  <AboutModal on:close={closeModal} />
 {/if}
 
 {#if selectedObra}

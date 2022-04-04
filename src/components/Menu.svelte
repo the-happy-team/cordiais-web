@@ -18,11 +18,8 @@
 </script>
 
 <div class="menu" style={menuPosCss}>
-  <MenuItem
-    on:click={() => handleMenuSelection(MenuItemType.About)}
-    bind:height={menuButtonHeight}
-  >
-    {menu.about}
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Project)}>
+    {menu.project}
   </MenuItem>
 
   <MenuItem
@@ -43,8 +40,11 @@
     {menu.texts}
   </MenuItem>
 
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Contact)}>
-    {menu.contact}
+  <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.About)}
+    bind:height={menuButtonHeight}
+  >
+    {menu.about}
   </MenuItem>
 </div>
 

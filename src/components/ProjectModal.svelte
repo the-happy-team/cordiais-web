@@ -7,7 +7,11 @@
 </script>
 
 <Modal on:close>
-  <div class="contact-modal" on:click={handleClick}>CONTACT</div>
+  <div class="contact-modal" on:click={handleClick}>
+    TEXTO INTRODUTÓRIO SOBRE O PROJETO<br />
+    CORDIALMENTE<br />
+    XOXO
+  </div>
 </Modal>
 
 <style lang="scss">

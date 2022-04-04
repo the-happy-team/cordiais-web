@@ -7,7 +7,13 @@
 </script>
 
 <Modal on:close>
-  <div class="about-modal" on:click={handleClick}>ABOUT</div>
+  <div class="about-modal" on:click={handleClick}>
+    CONTATO<br />
+    SOBRE O PRÊMIO<br />
+    EQUIPE<br />
+    FICHA TÉCNICA<br />
+    AGRADECIMENTOS
+  </div>
 </Modal>
 
 <style lang="scss">

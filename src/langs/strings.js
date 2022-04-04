@@ -21,11 +21,11 @@ export const emotions = {
 
 export const menu = {
   en: {
-    about: "about",
+    project: "cordially",
     sort: "arrange by emotion",
     highlight: "highlight",
     texts: "texts",
-    contact: "contact",
+    about: "about",
     happiness: "happiness",
     surprise: "surprise",
     sadness: "sadness",
@@ -38,11 +38,11 @@ export const menu = {
     Nudes: "nudes",
   },
   pt: {
-    about: "sobre",
+    project: "cordiais",
     sort: "organizar por",
     highlight: "destaques",
     texts: "textos",
-    contact: "contato",
+    about: "sobre",
     happiness: "felicidade",
     surprise: "surpresa",
     sadness: "tristeza",

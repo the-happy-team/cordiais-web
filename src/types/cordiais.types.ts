@@ -60,9 +60,9 @@ export const EmotionOrder: Array<string> = [
 
 export enum MenuItemType {
   None = 0,
-  About,
+  Project,
   OrderBy,
   FilterBy,
   Texts,
-  Contact
+  About,
 }
