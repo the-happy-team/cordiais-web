@@ -10,13 +10,17 @@
 
   let itemHeight: Array<number> = EmotionOrder.map((_, i) => i);
 
+  const handleItemClick = (o: OrderType) => {
+    orderBy = orderBy == o ? OrderType.Date : o;
+  };
+
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
 <div class="menu" style={menuPosCss}>
   {#each EmotionOrder as emo, i (emo)}
     <MenuItem
-      on:click={() => (orderBy = OrderType[emo])}
+      on:click={() => handleItemClick(OrderType[emo])}
       bind:height={itemHeight[i]}
       selected={orderBy == OrderType[emo]}
     >
