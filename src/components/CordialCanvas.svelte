@@ -36,7 +36,7 @@
       obraBackground.height = obraBackground.width / obraRatio;
     }
 
-    obraBackground.x = (obraCanvas.width - obraBackground.width);
+    obraBackground.x = obraCanvas.width - obraBackground.width;
     obraBackground.y = 0;
 
     ctx.fillStyle = emo2color("background");
@@ -53,6 +53,8 @@
     const emoNorm = 1.0 - 0.01 * selectedEmotionValue;
     const borderWidth =
       0.25 * (obWpH - Math.sqrt(obWpH * obWpH - 4 * emoNorm * obWH));
+    const squareSide = Math.sqrt(0.01 * selectedEmotionValue * obWH);
+    const squareThreshold = 0.8;
 
     const obraColor = {
       height: obraBackground.height - 2 * borderWidth,
@@ -60,6 +62,16 @@
       x: obraBackground.x + borderWidth,
       y: obraBackground.y + borderWidth,
     };
+
+    if (
+      squareSide < squareThreshold * obraBackground.width &&
+      squareSide < squareThreshold * obraBackground.height
+    ) {
+      obraColor.height = squareSide;
+      obraColor.width = squareSide;
+      obraColor.x = obraBackground.x + (obraBackground.width - squareSide) / 2;
+      obraColor.y = obraBackground.y + (obraBackground.height - squareSide) / 2;
+    }
 
     ctx.fillStyle = emo2color(selectedEmotion);
     ctx.fillRect(obraColor.x, obraColor.y, obraColor.width, obraColor.height);
