@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
   import { EmotionOrder, OrderType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
   import MenuItem from "./MenuItem.svelte";
@@ -17,7 +18,7 @@
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
-<div class="menu" style={menuPosCss}>
+<div class="menu" style={menuPosCss} transition:fade={{ duration: 120 }}>
   {#each EmotionOrder as emo, i (emo)}
     <MenuItem
       on:click={() => handleItemClick(OrderType[emo])}

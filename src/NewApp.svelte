@@ -32,6 +32,11 @@
     selectedObra = null;
   };
 
+  const handleCordialSelection = (obra: CordialType) => {
+    selectedObra = obra;
+    selectedMenuItem = MenuItemType.None;
+  };
+
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
       if (o == OrderType.Date) {
@@ -72,7 +77,7 @@
       <div
         class="face"
         class:color={filterBy == FilterType.NoFilter || obra[filterBy]}
-        on:click={() => (selectedObra = obra)}
+        on:click={() => handleCordialSelection(obra)}
       >
         <div
           class="face-content"

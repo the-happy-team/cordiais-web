@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
   import { FilterType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
   import MenuItem from "./MenuItem.svelte";
@@ -21,7 +22,7 @@
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
-<div class="menu" style={menuPosCss}>
+<div class="menu" style={menuPosCss} transition:fade={{ duration: 120 }}>
   {#each filters as fil, i (fil)}
     <MenuItem
       on:click={() => handleItemClick(FilterType[fil])}
