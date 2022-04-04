@@ -1,5 +1,8 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
+  import { about as _about } from "../langs/strings";
+
+  const aboutHtml = _about["pt"];
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -8,11 +11,7 @@
 
 <Modal on:close>
   <div class="about-modal" on:click={handleClick}>
-    CONTATO<br />
-    SOBRE O PRÊMIO<br />
-    EQUIPE<br />
-    FICHA TÉCNICA<br />
-    AGRADECIMENTOS
+    {@html aboutHtml}
   </div>
 </Modal>
 

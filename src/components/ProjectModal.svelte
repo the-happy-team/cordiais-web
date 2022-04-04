@@ -1,5 +1,8 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
+  import { project as _project } from "../langs/strings";
+
+  const projectHtml = _project["pt"];
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -8,9 +11,7 @@
 
 <Modal on:close>
   <div class="contact-modal" on:click={handleClick}>
-    TEXTO INTRODUTÓRIO SOBRE O PROJETO<br />
-    CORDIALMENTE<br />
-    XOXO
+    {@html projectHtml}
   </div>
 </Modal>
 

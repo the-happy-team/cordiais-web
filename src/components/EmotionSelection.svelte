@@ -1,6 +1,7 @@
 <script lang="ts">
   import { CordialType, EmotionOrder } from "../types/cordiais.types";
   import { emotions as _emotions } from "../langs/strings";
+
   export let selectedEmotion: string;
   export let obra: CordialType;
 
