@@ -11,6 +11,7 @@
   import Menu from "./components/Menu.svelte";
   import MenuOrder from "./components/MenuOrder.svelte";
   import MenuFilter from "./components/MenuFilter.svelte";
+  import MenuLanguage from "./components/MenuLanguage.svelte";
 
   const baseurl = window.location.href.replace(window.location.hash, "");
 
@@ -95,6 +96,8 @@
   bind:filterByWidth
   bind:orderByWidth
 />
+
+<MenuLanguage />
 
 {#if selectedMenuItem == MenuItemType.Project}
   <ProjectModal on:close={closeModal} />

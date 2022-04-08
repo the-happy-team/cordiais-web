@@ -2,12 +2,13 @@
   import { fade } from "svelte/transition";
   import { EmotionOrder, OrderType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
+  import { lang } from '../stores.js';
   import MenuItem from "./MenuItem.svelte";
 
   export let orderBy: OrderType;
   export let left = 0;
 
-  const menu = _menu["pt"];
+  $: menu = _menu[$lang];
 
   let itemHeight: Array<number> = EmotionOrder.map((_, i) => i);
 

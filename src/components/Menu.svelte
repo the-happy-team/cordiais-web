@@ -1,13 +1,14 @@
 <script lang="ts">
   import { MenuItemType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
+  import { lang } from '../stores.js';
   import MenuItem from "./MenuItem.svelte";
 
   export let selectedItem: MenuItemType;
   export let orderByWidth = 0;
   export let filterByWidth = 0;
 
-  const menu = _menu["pt"];
+  $: menu = _menu[$lang];
 
   const handleMenuSelection = (i: MenuItemType) => {
     selectedItem = selectedItem == i ? MenuItemType.None : i;

@@ -66,3 +66,8 @@ export enum MenuItemType {
   Texts,
   About,
 }
+
+export enum Lang {
+  EN = "en",
+  PT = "pt",
+}
