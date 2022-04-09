@@ -1,34 +1,49 @@
 <script lang="ts">
-  import { Lang } from "../types/cordiais.types";
-  import { lang } from "../stores.js";
+  import { onMount } from "svelte";
+  import { Languages } from "../types/cordiais.types";
+  import { language } from "../stores.js";
   import MenuItem from "./MenuItem.svelte";
 
-  const langList = Object.values(Lang).map((l) => l);
+  const langList = Object.values(Languages).map((l) => l);
+  const itemHeight = langList.map((_) => 0);
 
-  const handleLanguageSelection = (l: Lang) => {
-    if ($lang != l) {
-      $lang = l;
+  let el: HTMLDivElement;
+  let menuWidth = 0;
+
+  onMount(() => {
+    menuWidth = el.offsetWidth;
+  });
+
+  const handleLanguageSelection = (l: Languages) => {
+    if ($language != l) {
+      $language = l;
     }
   };
+
+  $: menuPosCss = `--menuHeight: ${itemHeight[0]}px; --menuWidth: ${menuWidth}px`;
 </script>
 
-<div class="menu-lang">
-  {#each langList as l (l)}
-    <MenuItem on:click={() => handleLanguageSelection(l)} selected={$lang == l}>
-      {l}
+<div class="menu-language" style={menuPosCss} bind:this={el}>
+  {#each langList as lang, i (lang)}
+    <MenuItem
+      on:click={() => handleLanguageSelection(lang)}
+      bind:height={itemHeight[i]}
+      selected={$language == lang}
+    >
+      {lang}
     </MenuItem>
   {/each}
 </div>
 
 <style lang="scss">
-  .menu-lang {
+  .menu-language {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: calc(10vw - var(--menuHeight));
+    left: calc(90vw - var(--menuWidth));
     box-sizing: border-box;
   }
 </style>

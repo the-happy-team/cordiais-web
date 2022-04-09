@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition";
   import { FilterType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
-  import { language } from '../stores.js';
+  import { language } from "../stores.js";
   import MenuItem from "./MenuItem.svelte";
 
   export let filterBy: FilterType;
@@ -23,7 +23,7 @@
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
-<div class="menu" style={menuPosCss} transition:fade={{ duration: 120 }}>
+<div class="menu-filter" style={menuPosCss} transition:fade={{ duration: 120 }}>
   {#each filters as fil, i (fil)}
     <MenuItem
       on:click={() => handleItemClick(FilterType[fil])}
@@ -36,7 +36,7 @@
 </div>
 
 <style lang="scss">
-  .menu {
+  .menu-filter {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
