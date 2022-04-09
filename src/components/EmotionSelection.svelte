@@ -1,12 +1,12 @@
 <script lang="ts">
   import { CordialType, EmotionOrder } from "../types/cordiais.types";
   import { emotions as _emotions } from "../langs/strings";
-  import { lang } from '../stores.js';
+  import { language } from '../stores.js';
 
   export let selectedEmotion: string;
   export let obra: CordialType;
 
-  $: emotions = _emotions[$lang];
+  $: emotions = _emotions[$language];
 </script>
 
 <div class="emotion-selection">

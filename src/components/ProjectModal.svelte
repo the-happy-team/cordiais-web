@@ -1,9 +1,9 @@
 <script lang="ts">
   import Modal from "./Modal.svelte";
   import { project as _project } from "../langs/strings";
-  import { lang } from '../stores.js';
+  import { language } from '../stores.js';
 
-  $: projectHtml = _project[$lang];
+  $: projectHtml = _project[$language];
 
   const handleClick = (e) => {
     e.stopPropagation();

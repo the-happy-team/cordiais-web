@@ -2,13 +2,13 @@
   import { fade } from "svelte/transition";
   import { FilterType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
-  import { lang } from '../stores.js';
+  import { language } from '../stores.js';
   import MenuItem from "./MenuItem.svelte";
 
   export let filterBy: FilterType;
   export let left = 0;
 
-  $: menu = _menu[$lang];
+  $: menu = _menu[$language];
 
   let filters = Object.keys(FilterType).filter(
     (v) => FilterType[v] != FilterType.NoFilter

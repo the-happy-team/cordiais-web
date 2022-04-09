@@ -67,7 +67,7 @@ export enum MenuItemType {
   About,
 }
 
-export enum Lang {
+export enum Languages {
   EN = "en",
   PT = "pt",
 }
