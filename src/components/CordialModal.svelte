@@ -13,17 +13,77 @@
   export let obra: CordialType;
   export let orderBy: OrderType = OrderType.happiness;
 
+  let modalWidth = 0;
+  let modalHeight = 0;
+  let canvasWidth = 0;
+  let canvasHeight = 0;
+  let infoWidth = 0;
+  let infoHeight = 0;
+
   const handleClick = (e) => {
     e.stopPropagation();
   };
 
+  const calculateSizes = (obra: CordialType) => {
+    const isHorizontal = obra.dimension.width > obra.dimension.height;
+
+    const viewport = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+
+    const modal = {
+      width: isHorizontal ? 0.4 * viewport.width : 0.8 * viewport.width,
+      height: 0,
+    };
+
+    const canvas = {
+      width: isHorizontal ? modal.width : modal.width / 3.0,
+      height: 0,
+    };
+
+    const obraRatioHeight = obra.dimension.height / obra.dimension.width;
+    canvas.height = canvas.width * obraRatioHeight;
+
+    const info = {
+      width: canvas.width,
+      height: isHorizontal ? 0.3 * viewport.height : canvas.height,
+    };
+
+    const modalHeightHorizontal = info.height + 2.0 * canvas.height;
+    const modalHeightVertical = canvas.height;
+
+    modal.height = isHorizontal ? modalHeightHorizontal : modalHeightVertical;
+
+    if (canvas.height > 0.9 * viewport.height) {
+      // TODO: fix shit
+    }
+
+    modalWidth = modal.width;
+    modalHeight = modal.height;
+    canvasWidth = canvas.width;
+    canvasHeight = canvas.height;
+    infoWidth = info.width;
+    infoHeight = info.height;
+  };
+
   $: selectedEmotion =
     orderBy == OrderType.Date ? EmotionOrder[0] : OrderType[orderBy];
+
+  $: calculateSizes(obra);
+  $: cssVars = [
+    `--modalWidth: ${modalWidth}px;`,
+    `--modalHeight: ${modalHeight}px;`,
+    `--canvasWidth: ${canvasWidth}px;`,
+    `--canvasHeight: ${canvasHeight}px;`,
+    `--infoWidth: ${infoWidth}px;`,
+    `--infoHeight: ${infoHeight}px;`,
+  ].join(" ");
 </script>
 
 <Modal on:close>
-  <div class="cordial-modal" on:click={handleClick}>
-    <div class="modal-content">
+  <div class="cordial-modal" style={cssVars}>
+    <div class="modal-content" on:click={handleClick}>
       <div class="image-container">
         <CordialObraImage {obra} />
       </div>
@@ -43,30 +103,26 @@
 
 <style lang="scss">
   .cordial-modal {
-    position: relative;
-    width: 80%;
-    height: 80%;
-    top: 10%;
+    width: var(--modalWidth);
+    height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     box-sizing: border-box;
-    background-color: #fff;
-    overflow-y: hidden;
   }
 
   .modal-content {
     width: 100%;
-    flex-grow: 1;
-    flex-basis: 0;
+    height: var(--modalHeight);
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
+    background-color: #fff;
 
     .image-container {
-      flex-grow: 1;
-      flex-basis: 0;
-      height: 100%;
+      width: var(--canvasWidth);
+      height: var(--canvasHeight);
       box-sizing: border-box;
     }
 
@@ -74,9 +130,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      flex-grow: 1;
-      flex-basis: 0;
-      height: 100%;
+      width: var(--infoWidth);
+      height: var(--infoHeight);
       box-sizing: border-box;
 
       .space {
@@ -85,10 +140,8 @@
     }
 
     .canvas-container {
-      position: relative;
-      flex-grow: 1;
-      flex-basis: 0;
-      height: 100%;
+      width: var(--canvasWidth);
+      height: var(--canvasHeight);
       box-sizing: border-box;
     }
   }

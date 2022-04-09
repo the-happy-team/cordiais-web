@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte/internal";
   import { CordialType, EmotionOrder } from "../types/cordiais.types";
 
   export let obra: CordialType;
@@ -7,20 +6,19 @@
 
   let obraCanvas: HTMLCanvasElement;
 
+  const sizeCanvas = (_: CordialType) => {
+    if (!obraCanvas) return;
+    obraCanvas.setAttribute("width", `${2 * obraCanvas.offsetWidth + 5}`);
+    obraCanvas.setAttribute("height", `${2 * obraCanvas.offsetHeight + 5}`);
+  };
+
   const drawCanvas = (selectedEmotionValue: number) => {
     if (!obraCanvas) return;
-
-    const emo2color = (emo: string) => {
-      if (emo == "background") return "#7f7f7f";
-      else return "#000000";
-    };
 
     // clear canvas
     const ctx = obraCanvas.getContext("2d");
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, obraCanvas.width, obraCanvas.height);
-
-    if (!obra.dimension.width || !obra.dimension.height) return;
 
     // calculate background w,h
     const obraRatio = obra.dimension.width / obra.dimension.height;
@@ -39,7 +37,7 @@
     obraBackground.x = obraCanvas.width - obraBackground.width;
     obraBackground.y = 0;
 
-    ctx.fillStyle = emo2color("background");
+    ctx.fillStyle = "#7f7f7f";
     ctx.fillRect(
       obraBackground.x,
       obraBackground.y,
@@ -73,22 +71,19 @@
       obraColor.y = obraBackground.y + (obraBackground.height - squareSide) / 2;
     }
 
-    ctx.fillStyle = emo2color(selectedEmotion);
+    ctx.fillStyle = "#000000";
     ctx.fillRect(obraColor.x, obraColor.y, obraColor.width, obraColor.height);
   };
 
-  onMount(() => {
-    obraCanvas.setAttribute("width", `${2 * obraCanvas.offsetWidth}`);
-    obraCanvas.setAttribute("height", `${2 * obraCanvas.offsetHeight}`);
-  });
-
+  $: sizeCanvas(obra);
   $: drawCanvas(obra.emotions[selectedEmotion]);
 </script>
 
-<canvas class="obra-canvas" bind:this={obraCanvas} />
+<canvas width="0" height="0" class="obra-canvas" bind:this={obraCanvas} />
 
 <style lang="scss">
   .obra-canvas {
+    display: block;
     width: 100%;
     height: 100%;
     box-sizing: border-box;

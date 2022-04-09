@@ -62,7 +62,9 @@
           "emotions" in obra &&
           "face_rectangle" in obra &&
           obra.marcantonio &&
-          obra.artist_death < 1953
+          obra.artist_death < 1953 &&
+          obra.dimension.height &&
+          obra.dimension.width
         );
       });
     orderedObras = [...obrasList];

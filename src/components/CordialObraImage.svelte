@@ -5,10 +5,7 @@
 
   const baseurl = window.location.href.replace(window.location.hash, "");
 
-  $: cssVars = [
-    `--imgUrl: url('${baseurl}imgs/obras/${obra.img}');`,
-    `--imgHeight: ${100 * (obra.dimension.height / obra.dimension.width)}%;`,
-  ].join(" ");
+  $: cssVars = [`--imgUrl: url('${baseurl}imgs/obras/${obra.img}');`].join(" ");
 </script>
 
 <div class="obra-image" style={cssVars} />
@@ -16,9 +13,9 @@
 <style lang="scss">
   .obra-image {
     width: 100%;
-    padding-bottom: var(--imgHeight);
+    height: 100%;
     background-image: var(--imgUrl);
-    background-position: top left;
+    background-position: left top;
     background-repeat: no-repeat;
     background-size: cover;
     box-sizing: border-box;
