@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import { Languages } from "../types/cordiais.types";
   import { language } from "../stores.js";
   import MenuItem from "./MenuItem.svelte";
 
+  const changeDispatch = createEventDispatcher();
   const langList = Object.values(Languages).map((l) => l);
   const itemHeight = langList.map((_) => 0);
 
@@ -16,7 +17,8 @@
 
   const handleLanguageSelection = (l: Languages) => {
     if ($language != l) {
-      $language = l;
+      changeDispatch("languagechange");
+      setTimeout(() => ($language = l), 150);
     }
   };
 

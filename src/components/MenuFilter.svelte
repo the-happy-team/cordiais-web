@@ -10,11 +10,11 @@
 
   $: menu = _menu[$language];
 
-  let filters = Object.keys(FilterType).filter(
+  const filters = Object.keys(FilterType).filter(
     (v) => FilterType[v] != FilterType.NoFilter
   );
 
-  let itemHeight: Array<number> = filters.map((_, i) => i);
+  const itemHeight: Array<number> = filters.map((_, i) => i);
 
   const handleItemClick = (f: FilterType) => {
     filterBy = filterBy == f ? FilterType.NoFilter : f;

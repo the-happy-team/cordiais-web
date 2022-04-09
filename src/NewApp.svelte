@@ -37,6 +37,10 @@
     selectedMenuItem = MenuItemType.None;
   };
 
+  const handleLanguageChange = () => {
+    selectedMenuItem = MenuItemType.None;
+  };
+
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
       if (o == OrderType.Date) {
@@ -92,7 +96,7 @@
 
 <Menu bind:selectedItem={selectedMenuItem} bind:subMenuLocation />
 
-<MenuLanguage />
+<MenuLanguage on:languagechange={handleLanguageChange} />
 
 {#if selectedMenuItem == MenuItemType.Project}
   <ProjectModal on:close={closeModal} />
