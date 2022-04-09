@@ -19,8 +19,7 @@
   let selectedObra: CordialType = null;
 
   let selectedMenuItem = MenuItemType.None;
-  let orderByWidth = 0;
-  let filterByWidth = 0;
+  let subMenuLocation = 0;
 
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
@@ -91,20 +90,16 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<Menu
-  bind:selectedItem={selectedMenuItem}
-  bind:filterByWidth
-  bind:orderByWidth
-/>
+<Menu bind:selectedItem={selectedMenuItem} bind:subMenuLocation />
 
 <MenuLanguage />
 
 {#if selectedMenuItem == MenuItemType.Project}
   <ProjectModal on:close={closeModal} />
 {:else if selectedMenuItem == MenuItemType.OrderBy}
-  <MenuOrder bind:orderBy left={orderByWidth} />
+  <MenuOrder bind:orderBy left={subMenuLocation} />
 {:else if selectedMenuItem == MenuItemType.FilterBy}
-  <MenuFilter bind:filterBy left={filterByWidth} />
+  <MenuFilter bind:filterBy left={subMenuLocation} />
 {:else if selectedMenuItem == MenuItemType.About}
   <AboutModal on:close={closeModal} />
 {/if}

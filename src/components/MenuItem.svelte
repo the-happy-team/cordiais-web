@@ -3,13 +3,11 @@
 
   export let disabled = false;
   export let selected = false;
-  export let width = 0;
   export let height = 0;
 
   let el: HTMLDivElement;
 
   onMount(() => {
-    width = el.offsetWidth;
     height = el.offsetHeight;
   });
 </script>
