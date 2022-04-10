@@ -56,8 +56,17 @@
 
     modal.height = isHorizontal ? modalHeightHorizontal : modalHeightVertical;
 
-    if (canvas.height > 0.9 * viewport.height) {
-      // TODO: fix shit
+    if (modal.height > 0.9 * viewport.height) {
+      modal.height = 0.9 * viewport.height;
+      if (isHorizontal) {
+        canvas.height = (modal.height - info.height) / 2;
+        canvas.width = canvas.height / obraRatioHeight;
+      } else {
+        canvas.height = modal.height;
+        info.height = modal.height;
+        canvas.width = canvas.height / obraRatioHeight;
+        info.width = modal.width - 2 * canvas.width;
+      }
     }
 
     modalWidth = modal.width;
