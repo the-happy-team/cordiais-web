@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
+  import { fade } from "svelte/transition";
   import { Languages } from "../types/cordiais.types";
   import { language } from "../stores.js";
   import MenuItem from "./MenuItem.svelte";
@@ -10,7 +11,9 @@
 
   let el: HTMLDivElement;
   let menuWidth = 0;
+
   const transitionDelay = 120;
+  const transitionDuration = 100;
 
   onMount(() => {
     menuWidth = el.offsetWidth;
@@ -26,7 +29,12 @@
   $: menuPosCss = `--menuHeight: ${itemHeight[0]}px; --menuWidth: ${menuWidth}px`;
 </script>
 
-<div class="menu-language" style={menuPosCss} bind:this={el}>
+<div
+  class="menu-language"
+  style={menuPosCss}
+  transition:fade={{ duration: transitionDuration }}
+  bind:this={el}
+>
   {#each langList as lang, i (lang)}
     <MenuItem
       on:click={() => handleLanguageSelection(lang)}

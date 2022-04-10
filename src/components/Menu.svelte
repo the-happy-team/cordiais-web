@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
   import { MenuItemType } from "../types/cordiais.types";
   import { menu as _menu } from "../langs/strings";
   import { language } from "../stores.js";
@@ -17,11 +18,17 @@
     subMenuLocation = (e.target as HTMLDivElement).offsetWidth;
   };
 
+  const transitionDuration = 100;
+
   let menuButtonHeight: number;
   $: menuPosCss = `--menuButtonHeight: ${menuButtonHeight}px;`;
 </script>
 
-<div class="menu" style={menuPosCss}>
+<div
+  class="menu"
+  style={menuPosCss}
+  transition:fade={{ duration: transitionDuration }}
+>
   <MenuItem on:click={() => handleMenuSelection(MenuItemType.Project)}>
     {menu.project}
   </MenuItem>

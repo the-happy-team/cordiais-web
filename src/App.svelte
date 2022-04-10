@@ -92,6 +92,7 @@
 
   let getObrasPromise = getObras();
   $: orderedObras = reorderObras(orderBy);
+  $: noFilter = filterBy == FilterType.NoFilter;
 </script>
 
 {#await getObrasPromise}
@@ -101,7 +102,7 @@
     {#each orderedObras as obra (obra.slug)}
       <div
         class="face"
-        class:color={filterBy == FilterType.NoFilter || obra[filterBy]}
+        class:color={(noFilter || obra[filterBy]) && !selectedObra}
         on:click={() => handleCordialSelection(obra)}
       >
         <div
@@ -115,9 +116,11 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<Menu bind:selectedItem={selectedMenuItem} bind:subMenuLocation />
+{#if selectedObra == null}
+  <Menu bind:selectedItem={selectedMenuItem} bind:subMenuLocation />
 
-<MenuLanguage on:languagechange={handleLanguageChange} />
+  <MenuLanguage on:languagechange={handleLanguageChange} />
+{/if}
 
 {#if selectedMenuItem == MenuItemType.Project}
   <ProjectModal on:close={closeModal} />
