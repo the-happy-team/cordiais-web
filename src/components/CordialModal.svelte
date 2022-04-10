@@ -19,6 +19,7 @@
   let canvasHeight = 0;
   let infoWidth = 0;
   let infoHeight = 0;
+  let horizontal = false;
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -65,6 +66,7 @@
     canvasHeight = canvas.height;
     infoWidth = info.width;
     infoHeight = info.height;
+    horizontal = isHorizontal;
   };
 
   $: selectedEmotion =
@@ -83,12 +85,12 @@
 
 <Modal on:close>
   <div class="cordial-modal" style={cssVars}>
-    <div class="modal-content" on:click={handleClick}>
+    <div class="modal-content" on:click={handleClick} class:horizontal>
       <div class="image-container">
         <CordialObraImage {obra} />
       </div>
 
-      <div class="emotion-selection-container">
+      <div class="emotion-selection-container" class:horizontal>
         <CordialInfo {obra} />
         <div class="space" />
         <EmotionSelection {obra} bind:selectedEmotion />
@@ -119,6 +121,11 @@
     flex-direction: row;
     box-sizing: border-box;
     background-color: #fff;
+    overflow: hidden;
+
+    &.horizontal {
+      flex-direction: column;
+    }
 
     .image-container {
       width: var(--canvasWidth);
@@ -136,6 +143,14 @@
 
       .space {
         height: 5%;
+      }
+    }
+
+    .emotion-selection-container.horizontal {
+      flex-direction: row;
+
+      .space {
+        display: none;
       }
     }
 
