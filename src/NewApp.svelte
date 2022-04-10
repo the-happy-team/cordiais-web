@@ -34,12 +34,29 @@
 
   const handleCordialSelection = (obra: CordialType) => {
     selectedObra = obra;
-    selectedMenuItem = MenuItemType.None;
+    closeModal();
   };
 
   const handleLanguageChange = () => {
-    selectedMenuItem = MenuItemType.None;
+    closeModal();
   };
+
+  const handleKeyDown = (e: Event) => {
+    if ((e as KeyboardEvent).key === "Escape") {
+      if (
+        selectedMenuItem == MenuItemType.About ||
+        selectedMenuItem == MenuItemType.Project
+      ) {
+        closeModal();
+      }
+
+      if (selectedObra) {
+        closeCordial();
+      }
+    }
+  };
+
+  document.addEventListener("keydown", handleKeyDown);
 
   const reorderObras = (o: OrderType) => {
     return orderedObras.sort((a, b) => {
