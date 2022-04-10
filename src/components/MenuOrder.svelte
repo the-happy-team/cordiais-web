@@ -10,7 +10,9 @@
 
   $: menu = _menu[$language];
 
-  const itemHeight: Array<number> = EmotionOrder.map((_, i) => i);
+  const itemHeight = EmotionOrder.map((_) => 0);
+
+  const transitionDuration = 100;
 
   const handleItemClick = (o: OrderType) => {
     orderBy = orderBy == o ? OrderType.Date : o;
@@ -19,7 +21,11 @@
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
-<div class="menu-order" style={menuPosCss} transition:fade={{ duration: 120 }}>
+<div
+  class="menu-order"
+  style={menuPosCss}
+  transition:fade={{ duration: transitionDuration }}
+>
   {#each EmotionOrder as emo, i (emo)}
     <MenuItem
       on:click={() => handleItemClick(OrderType[emo])}

@@ -151,7 +151,7 @@
     user-select: none;
 
     filter: grayscale(1);
-    transition: filter 0.12s linear;
+    transition: filter 0.05s linear;
 
     &.color {
       filter: grayscale(0);
@@ -172,7 +172,7 @@
     background-size: cover;
 
     filter: brightness(1);
-    transition: filter 0.12s linear;
+    transition: filter 0.15s linear;
 
     &:hover {
       filter: brightness(1.2);

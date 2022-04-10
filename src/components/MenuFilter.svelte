@@ -14,7 +14,9 @@
     (v) => FilterType[v] != FilterType.NoFilter
   );
 
-  const itemHeight: Array<number> = filters.map((_, i) => i);
+  const itemHeight = filters.map((_) => 0);
+
+  const transitionDuration = 100;
 
   const handleItemClick = (f: FilterType) => {
     filterBy = filterBy == f ? FilterType.NoFilter : f;
@@ -23,7 +25,11 @@
   $: menuPosCss = `--menuButtonHeight: ${itemHeight[0]}px; --menuPosLeft: ${left}px`;
 </script>
 
-<div class="menu-filter" style={menuPosCss} transition:fade={{ duration: 120 }}>
+<div
+  class="menu-filter"
+  style={menuPosCss}
+  transition:fade={{ duration: transitionDuration }}
+>
   {#each filters as fil, i (fil)}
     <MenuItem
       on:click={() => handleItemClick(FilterType[fil])}

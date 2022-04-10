@@ -2,17 +2,18 @@
   import { fade } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
 
+  const transitionDuration = 100;
   const closeDispatch = createEventDispatcher();
 
   const handleClose = () => {
-    setTimeout(() => closeDispatch("close"), 120);
+    setTimeout(() => closeDispatch("close"), transitionDuration);
   };
 </script>
 
 <div
   class="modal-background"
   on:click={handleClose}
-  transition:fade={{ duration: 120 }}
+  transition:fade={{ duration: transitionDuration }}
 >
   <slot />
 </div>

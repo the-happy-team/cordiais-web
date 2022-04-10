@@ -10,6 +10,7 @@
 
   let el: HTMLDivElement;
   let menuWidth = 0;
+  const transitionDelay = 120;
 
   onMount(() => {
     menuWidth = el.offsetWidth;
@@ -18,7 +19,7 @@
   const handleLanguageSelection = (l: Languages) => {
     if ($language != l) {
       changeDispatch("languagechange");
-      setTimeout(() => ($language = l), 150);
+      setTimeout(() => ($language = l), transitionDelay);
     }
   };
 
