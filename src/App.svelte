@@ -84,7 +84,9 @@
           obra.dimension.width
         );
       });
-    orderedObras = [...obrasList];
+
+    const newLength = Math.floor(obrasList.length / 10) * 10;
+    orderedObras = obrasList.slice(0, newLength);
     orderedObras = reorderObras(orderBy);
   }
 
