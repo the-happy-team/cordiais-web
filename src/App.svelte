@@ -152,13 +152,16 @@
     width: 10%;
     padding-bottom: 10%;
     box-sizing: border-box;
-    cursor: pointer;
     user-select: none;
 
+    cursor: initial;
+    pointer-events: none;
     filter: grayscale(1);
     transition: filter 0.05s linear;
 
     &.color {
+      cursor: pointer;
+      pointer-events: all;
       filter: grayscale(0);
     }
   }
