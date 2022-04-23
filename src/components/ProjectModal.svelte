@@ -11,16 +11,17 @@
 </script>
 
 <Modal on:close>
-  <div class="contact-modal" on:click={handleClick}>
+  <div class="project-modal" on:click={handleClick}>
     {@html projectHtml}
   </div>
 </Modal>
 
 <style lang="scss">
-  .contact-modal {
+  .project-modal {
     position: relative;
     width: 50%;
-    height: 50%;
+    max-height: 80%;
+    padding: 20px;
     top: 5%;
     margin-left: 45%;
     right: 0;
@@ -28,6 +29,6 @@
     flex-direction: column;
     box-sizing: border-box;
     background-color: #fff;
-    overflow-y: hidden;
+    overflow-y: scroll;
   }
 </style>
