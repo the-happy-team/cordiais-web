@@ -26,7 +26,8 @@
   };
 
   const calculateSizes = (obra: CordialType) => {
-    const isHorizontal = obra.dimension.width > obra.dimension.height;
+    // const isHorizontal = obra.dimension.width > obra.dimension.height;
+    const isHorizontal = false;
 
     const viewport = {
       width: window.innerWidth,
