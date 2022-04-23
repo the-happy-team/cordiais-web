@@ -54,6 +54,7 @@
   <MenuItem
     on:click={() => handleMenuSelection(MenuItemType.About)}
     bind:height={menuButtonHeight}
+    disabled
   >
     {menu.about}
   </MenuItem>
