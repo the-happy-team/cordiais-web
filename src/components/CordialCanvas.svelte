@@ -73,7 +73,6 @@
     }
 
     ctx.fillStyle = obraShape.color;
-    console.log(obraShape.color);
     ctx.fillRect(obraShape.x, obraShape.y, obraShape.width, obraShape.height);
   };
 
