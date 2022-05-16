@@ -12,7 +12,7 @@
     obraCanvas.setAttribute("height", `${2 * obraCanvas.offsetHeight + 5}`);
   };
 
-  const drawCanvas = (selectedEmotionValue: number) => {
+  const drawCanvas = (selectedEmotionValue: number, obraColor: string) => {
     if (!obraCanvas) return;
 
     // clear canvas
@@ -54,29 +54,31 @@
     const squareSide = Math.sqrt(0.01 * selectedEmotionValue * obWH);
     const squareThreshold = 0.8;
 
-    const obraColor = {
+    const obraShape = {
       height: obraBackground.height - 2 * borderWidth,
       width: obraBackground.width - 2 * borderWidth,
       x: obraBackground.x + borderWidth,
       y: obraBackground.y + borderWidth,
+      color: obraColor,
     };
 
     if (
       squareSide < squareThreshold * obraBackground.width &&
       squareSide < squareThreshold * obraBackground.height
     ) {
-      obraColor.height = squareSide;
-      obraColor.width = squareSide;
-      obraColor.x = obraBackground.x + (obraBackground.width - squareSide) / 2;
-      obraColor.y = obraBackground.y + (obraBackground.height - squareSide) / 2;
+      obraShape.height = squareSide;
+      obraShape.width = squareSide;
+      obraShape.x = obraBackground.x + (obraBackground.width - squareSide) / 2;
+      obraShape.y = obraBackground.y + (obraBackground.height - squareSide) / 2;
     }
 
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(obraColor.x, obraColor.y, obraColor.width, obraColor.height);
+    ctx.fillStyle = obraShape.color;
+    console.log(obraShape.color);
+    ctx.fillRect(obraShape.x, obraShape.y, obraShape.width, obraShape.height);
   };
 
   $: sizeCanvas(obra);
-  $: drawCanvas(obra.emotions[selectedEmotion]);
+  $: drawCanvas(obra.emotions[selectedEmotion], obra.dominant_color);
 </script>
 
 <canvas width="0" height="0" class="obra-canvas" bind:this={obraCanvas} />

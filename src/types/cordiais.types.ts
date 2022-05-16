@@ -22,6 +22,7 @@ export type CordialType = {
   marcantonio: boolean;
   artist_death: number;
   img: string;
+  dominant_color: string;
   face_rectangle: {
     left: number;
     top: number;
