@@ -12,6 +12,7 @@
   import MenuOrder from "./components/MenuOrder.svelte";
   import MenuFilter from "./components/MenuFilter.svelte";
   import MenuLanguage from "./components/MenuLanguage.svelte";
+  import VLibras from "./components/VLibras.svelte";
 
   const baseurl = window.location.href.replace(window.location.hash, "");
 
@@ -135,6 +136,8 @@
 {#if selectedObra}
   <CordialModal on:close={closeCordial} bind:obra={selectedObra} bind:orderBy />
 {/if}
+
+<VLibras />
 
 <style lang="scss">
   .container {
