@@ -1,3 +1,8 @@
+:root {
+  --color-bg: #fffff4;
+  --color-highlight: #ff7d01;
+}
+
 html,
 body {
   position: relative;

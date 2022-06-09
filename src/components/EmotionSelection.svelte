@@ -33,9 +33,12 @@
   .emotion-option {
     display: inline;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
   }
 
   .emotion-option.selected {
-    color: yellowgreen;
+    color: var(--color-highlight);
+    font-weight: 600;
   }
 </style>

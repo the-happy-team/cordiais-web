@@ -19,8 +19,9 @@
 <style lang="scss">
   .menu-item {
     padding: 6px 8px;
-    font-size: 14px;
-    background-color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    background-color: var(--color-bg);
     color: #000;
     cursor: pointer;
     pointer-events: all;
@@ -35,7 +36,8 @@
     }
 
     &.selected {
-      color: yellowgreen;
+      color: var(--color-highlight);
+      font-weight: 600;
     }
   }
 </style>

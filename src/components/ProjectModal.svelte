@@ -23,12 +23,12 @@
     max-height: 80%;
     padding: 20px;
     top: 5%;
-    margin-left: 45%;
+    margin-left: 30%;
     right: 0;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: var(--color-bg);
     overflow-y: scroll;
   }
 </style>

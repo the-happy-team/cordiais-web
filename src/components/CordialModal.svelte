@@ -130,7 +130,7 @@
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: var(--color-bg);
     overflow: hidden;
 
     &.horizontal {

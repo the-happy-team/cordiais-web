@@ -14,7 +14,7 @@
 
 <div class="cordial-info">
   {#each itemsToShow as item (item)}
-    <div class="obra-item">
+    <div class="obra-item obra-{item}">
       {#if item == "dimension"}
         {obra[item].height} x {obra[item].width} {obra[item].unit}
       {:else}
@@ -34,5 +34,14 @@
 
   .obra-item {
     text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .obra-item.obra-artist {
+    font-weight: 600;
+  }
+  .obra-item.obra-title {
+    font-style: italic;
   }
 </style>

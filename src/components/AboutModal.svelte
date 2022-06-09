@@ -22,7 +22,7 @@
     width: 50%;
     height: 90%;
     top: 5%;
-    margin-left: 33%;
+    margin-left: 30%;
     right: 0;
     display: flex;
     flex-direction: column;
