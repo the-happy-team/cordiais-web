@@ -24,6 +24,12 @@
 <Modal on:close>
   <div class="modal-content" on:click={handleClick} style={modalPosCss}>
     {@html modalHtml}
+    <div
+      class="info-logo-container"
+      class:hide={selectedMenuItem != MenuItemType.Info}
+    >
+      <div class="info-logo funarte" />
+    </div>
   </div>
 </Modal>
 
@@ -48,5 +54,28 @@
     font-size: 15px;
     text-align: justify;
     line-height: 1.5;
+  }
+
+  .info-logo-container {
+    width: 100%;
+    margin: 16px 0 10px;
+    --width-logo-funarte: 45%;
+  }
+
+  .info-logo-container.hide {
+    display: none;
+  }
+
+  .info-logo {
+    width: var(--width-logo-funarte);
+    background-color: var(--color-bg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .info-logo.funarte {
+    padding-bottom: calc(var(--width-logo-funarte) * 125 / 1000);
+    background-image: url("../imgs/funarte.png");
   }
 </style>
