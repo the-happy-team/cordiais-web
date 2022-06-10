@@ -5,6 +5,7 @@
   import { language } from "../stores.js";
 
   export let selectedMenuItem: MenuItemType = MenuItemType.Greetings;
+  export let menuButtonHeight = 0;
 
   const item2key = (item: MenuItemType) => {
     if (item == MenuItemType.Greetings) return "greetings";
@@ -17,10 +18,11 @@
   };
 
   $: modalHtml = _modal[item2key(selectedMenuItem)][$language];
+  $: modalPosCss = `--menuButtonHeight: ${menuButtonHeight}px;`;
 </script>
 
 <Modal on:close>
-  <div class="modal-content" on:click={handleClick}>
+  <div class="modal-content" on:click={handleClick} style={modalPosCss}>
     {@html modalHtml}
   </div>
 </Modal>
@@ -31,7 +33,7 @@
     width: 50%;
     max-height: 80%;
     padding: 20px;
-    top: 5%;
+    top: calc(10vw - var(--menuButtonHeight));
     margin-left: 30%;
     right: 0;
     display: flex;

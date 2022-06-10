@@ -20,6 +20,7 @@
 
   let selectedMenuItem = MenuItemType.None;
   let subMenuLocation = 0;
+  let menuButtonHeight = 0;
 
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
@@ -118,13 +119,17 @@
 {/await}
 
 {#if selectedObra == null}
-  <Menu bind:selectedItem={selectedMenuItem} bind:subMenuLocation />
+  <Menu
+    bind:selectedItem={selectedMenuItem}
+    bind:subMenuLocation
+    bind:menuButtonHeight
+  />
 
   <MenuLanguage on:languagechange={handleLanguageChange} />
 {/if}
 
 {#if selectedMenuItem == MenuItemType.Greetings || selectedMenuItem == MenuItemType.About || selectedMenuItem == MenuItemType.Info}
-  <ModalContent {selectedMenuItem} on:close={closeModal} />
+  <ModalContent {selectedMenuItem} on:close={closeModal} {menuButtonHeight} />
 {:else if selectedMenuItem == MenuItemType.OrderBy}
   <MenuOrder bind:orderBy left={subMenuLocation} />
 {:else if selectedMenuItem == MenuItemType.FilterBy}

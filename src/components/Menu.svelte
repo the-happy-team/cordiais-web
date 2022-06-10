@@ -6,6 +6,7 @@
   import MenuItem from "./MenuItem.svelte";
 
   export let selectedItem: MenuItemType;
+  export let menuButtonHeight: number;
   export let subMenuLocation = 0;
 
   $: menu = _menu[$language];
@@ -20,7 +21,6 @@
 
   const transitionDuration = 100;
 
-  let menuButtonHeight: number;
   $: menuPosCss = `--menuButtonHeight: ${menuButtonHeight}px;`;
 </script>
 
