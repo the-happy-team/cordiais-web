@@ -29,7 +29,10 @@
   style={menuPosCss}
   transition:fade={{ duration: transitionDuration }}
 >
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Greetings)}>
+  <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.Greetings)}
+    selected={selectedItem == MenuItemType.Greetings}
+  >
     {menu.greetings}
   </MenuItem>
 
@@ -50,11 +53,15 @@
   <MenuItem
     on:click={() => handleMenuSelection(MenuItemType.About)}
     bind:height={menuButtonHeight}
+    selected={selectedItem == MenuItemType.About}
   >
     {menu.about}
   </MenuItem>
 
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Info)}>
+  <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.Info)}
+    selected={selectedItem == MenuItemType.Info}
+  >
     {menu.info}
   </MenuItem>
 </div>
