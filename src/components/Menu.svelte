@@ -29,8 +29,8 @@
   style={menuPosCss}
   transition:fade={{ duration: transitionDuration }}
 >
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Project)}>
-    {menu.project}
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Greetings)}>
+    {menu.greetings}
   </MenuItem>
 
   <MenuItem
@@ -47,16 +47,15 @@
     {menu.highlight}
   </MenuItem>
 
-  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Texts)} disabled>
-    {menu.texts}
-  </MenuItem>
-
   <MenuItem
     on:click={() => handleMenuSelection(MenuItemType.About)}
     bind:height={menuButtonHeight}
-    disabled
   >
     {menu.about}
+  </MenuItem>
+
+  <MenuItem on:click={() => handleMenuSelection(MenuItemType.Info)}>
+    {menu.info}
   </MenuItem>
 </div>
 

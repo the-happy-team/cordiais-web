@@ -5,9 +5,8 @@
     OrderType,
     MenuItemType,
   } from "./types/cordiais.types";
-  import AboutModal from "./components/AboutModal.svelte";
-  import ProjectModal from "./components/ProjectModal.svelte";
   import CordialModal from "./components/CordialModal.svelte";
+  import ModalContent from "./components/ModalContent.svelte";
   import Menu from "./components/Menu.svelte";
   import MenuOrder from "./components/MenuOrder.svelte";
   import MenuFilter from "./components/MenuFilter.svelte";
@@ -46,7 +45,8 @@
     if ((e as KeyboardEvent).key === "Escape") {
       if (
         selectedMenuItem == MenuItemType.About ||
-        selectedMenuItem == MenuItemType.Project
+        selectedMenuItem == MenuItemType.Greetings ||
+        selectedMenuItem == MenuItemType.Info
       ) {
         closeModal();
       }
@@ -123,14 +123,12 @@
   <MenuLanguage on:languagechange={handleLanguageChange} />
 {/if}
 
-{#if selectedMenuItem == MenuItemType.Project}
-  <ProjectModal on:close={closeModal} />
+{#if selectedMenuItem == MenuItemType.Greetings || selectedMenuItem == MenuItemType.About || selectedMenuItem == MenuItemType.Info}
+  <ModalContent {selectedMenuItem} on:close={closeModal} />
 {:else if selectedMenuItem == MenuItemType.OrderBy}
   <MenuOrder bind:orderBy left={subMenuLocation} />
 {:else if selectedMenuItem == MenuItemType.FilterBy}
   <MenuFilter bind:filterBy left={subMenuLocation} />
-{:else if selectedMenuItem == MenuItemType.About}
-  <AboutModal on:close={closeModal} />
 {/if}
 
 {#if selectedObra}
