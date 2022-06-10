@@ -18,6 +18,7 @@ script:
   - git rm --cached -r . &> /dev/null
   - mv public/* .
   - rm -rf package* rollup* tsconfig* src/ .travis* public/
+  - echo "cordiais.marinagem.com" > CNAME
   - git add .
   - git commit -m "updates site" &> /dev/null
   - git remote add gh https://thiagohersan:$GHTOKEN@github.com/the-happy-team/cordiais-web.git
