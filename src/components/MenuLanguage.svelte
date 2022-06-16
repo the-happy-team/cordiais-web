@@ -17,10 +17,17 @@
 
   onMount(() => {
     menuWidth = el.offsetWidth;
+    const lsLang = localStorage.getItem("cordiais-lang");
+    if (lsLang != null) {
+      handleLanguageSelection(lsLang == "en" ? Languages.EN : Languages.PT);
+    } else {
+      localStorage.setItem("cordiais-lang", $language);
+    }
   });
 
   const handleLanguageSelection = (l: Languages) => {
     if ($language != l) {
+      localStorage.setItem("cordiais-lang", l);
       changeDispatch("languagechange");
       setTimeout(() => ($language = l), transitionDelay);
     }

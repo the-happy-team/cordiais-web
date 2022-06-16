@@ -13,8 +13,10 @@
 
   $: if ($hash.endsWith("en")) {
     $language = Languages.EN;
+    localStorage.setItem("cordiais-lang", Languages.EN);
   } else if ($hash.endsWith("pt")) {
     $language = Languages.PT;
+    localStorage.setItem("cordiais-lang", Languages.PT);
   }
 </script>
 
