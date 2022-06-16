@@ -15,14 +15,28 @@
   const transitionDelay = 120;
   const transitionDuration = 100;
 
-  onMount(() => {
-    menuWidth = el.offsetWidth;
+  const checkHash = () => {
+    const hash = window.location.hash;
+    if (hash.endsWith("en")) {
+      localStorage.setItem("cordiais-lang", Languages.EN);
+    } else if (hash.endsWith("pt")) {
+      localStorage.setItem("cordiais-lang", Languages.PT);
+    }
+  };
+
+  const loadFromLocalStorage = () => {
     const lsLang = localStorage.getItem("cordiais-lang");
     if (lsLang != null) {
       handleLanguageSelection(lsLang == "en" ? Languages.EN : Languages.PT);
     } else {
       localStorage.setItem("cordiais-lang", $language);
     }
+  };
+
+  onMount(() => {
+    menuWidth = el.offsetWidth;
+    checkHash();
+    loadFromLocalStorage();
   });
 
   const handleLanguageSelection = (l: Languages) => {
