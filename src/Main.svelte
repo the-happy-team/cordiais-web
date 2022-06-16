@@ -11,7 +11,7 @@
     return () => window.removeEventListener("hashchange", update);
   });
 
-  if ($hash.endsWith("en")) {
+  $: if ($hash.endsWith("en")) {
     $language = Languages.EN;
   } else if ($hash.endsWith("pt")) {
     $language = Languages.PT;
