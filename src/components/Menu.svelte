@@ -39,6 +39,7 @@
   <MenuItem
     on:click={() => handleMenuSelection(MenuItemType.OrderBy)}
     on:click={handleSubMenuLocation}
+    selected={selectedItem == MenuItemType.OrderBy}
   >
     {menu.sort}
   </MenuItem>
@@ -46,6 +47,7 @@
   <MenuItem
     on:click={() => handleMenuSelection(MenuItemType.FilterBy)}
     on:click={handleSubMenuLocation}
+    selected={selectedItem == MenuItemType.FilterBy}
   >
     {menu.highlight}
   </MenuItem>

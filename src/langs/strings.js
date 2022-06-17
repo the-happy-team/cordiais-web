@@ -22,7 +22,7 @@ export const emotions = {
 export const menu = {
   en: {
     greetings: "greetings",
-    sort: "arrange by emotions",
+    sort: "arrange by",
     highlight: "highlight",
     texts: "texts",
     about: "about",
@@ -40,8 +40,8 @@ export const menu = {
   },
   pt: {
     greetings: "saudações",
-    sort: "organizar por emoções",
-    highlight: "destaques",
+    sort: "organizar por",
+    highlight: "destacar",
     texts: "textos",
     about: "sobre",
     info: "info",
