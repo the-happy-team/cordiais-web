@@ -43,7 +43,7 @@
     const obraParam = urlParams.get("obra");
     if (obraParam != null) {
       urlObra = orderedObras.filter((o) =>
-        o.title.toLowerCase().includes(obraParam)
+        o.title.toLowerCase().includes(obraParam.toLowerCase())
       )[0];
 
       if (urlObra) handleCordialSelection(urlObra);
