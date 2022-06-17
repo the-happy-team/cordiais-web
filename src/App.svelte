@@ -13,7 +13,7 @@
   import MenuLanguage from "./components/MenuLanguage.svelte";
   import VLibras from "./components/VLibras.svelte";
 
-  const baseurl = window.location.href.replace(window.location.hash, "");
+  const baseurl = `${window.location.origin}${window.location.pathname}`;
 
   let orderedObras: Array<CordialType> = [];
   let selectedObra: CordialType = null;

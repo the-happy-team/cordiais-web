@@ -3,7 +3,7 @@
 
   export let obra: CordialType;
 
-  const baseurl = window.location.href.replace(window.location.hash, "");
+  const baseurl = `${window.location.origin}${window.location.pathname}`;
 
   $: cssVars = [`--imgUrl: url('${baseurl}imgs/obras/${obra.img}');`].join(" ");
 </script>

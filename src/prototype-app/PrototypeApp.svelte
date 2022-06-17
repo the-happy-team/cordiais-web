@@ -28,7 +28,7 @@
   const allCollections = [""];
 
   async function getObras() {
-    const baseurl = window.location.href.replace(window.location.hash, "");
+    const baseurl = `${window.location.origin}${window.location.pathname}`;
     let response = await fetch(`${baseurl}data/obras.json`);
     let obras = await response.json();
     const obrasList = Object.keys(obras).map((o) => obras[o]);
