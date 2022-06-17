@@ -18,6 +18,10 @@
   let orderedObras: Array<CordialType> = [];
   let selectedObra: CordialType = null;
 
+  let urlObra: CordialType = null;
+  let urlObraTimeout = null;
+  const urlObraTimeoutValue = 5 * 60 * 1000;
+
   let selectedMenuItem = MenuItemType.None;
   let subMenuLocation = 0;
   let menuButtonHeight = 0;
@@ -25,12 +29,36 @@
   let filterBy: FilterType = FilterType.NoFilter;
   let orderBy: OrderType = OrderType.Date;
 
+  const resetUrlObraTimeout = () => {
+    if (urlObraTimeout) clearTimeout(urlObraTimeout);
+    if (urlObra)
+      urlObraTimeout = setTimeout(
+        () => handleCordialSelection(urlObra),
+        urlObraTimeoutValue
+      );
+  };
+
+  const parseObraFromUrl = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const obraParam = urlParams.get("obra");
+    if (obraParam != null) {
+      urlObra = orderedObras.filter((o) =>
+        o.title.toLowerCase().includes(obraParam)
+      )[0];
+
+      if (urlObra) handleCordialSelection(urlObra);
+      resetUrlObraTimeout();
+    }
+  };
+
   const closeModal = () => {
     selectedMenuItem = MenuItemType.None;
+    resetUrlObraTimeout();
   };
 
   const closeCordial = () => {
     selectedObra = null;
+    resetUrlObraTimeout();
   };
 
   const handleCordialSelection = (obra: CordialType) => {
@@ -90,6 +118,7 @@
     const newLength = Math.floor(obrasList.length / 10) * 10;
     orderedObras = obrasList.slice(0, newLength);
     orderedObras = reorderObras(orderBy);
+    parseObraFromUrl();
   }
 
   let getObrasPromise = getObras();
