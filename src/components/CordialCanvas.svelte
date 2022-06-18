@@ -17,7 +17,7 @@
 
     // clear canvas
     const ctx = obraCanvas.getContext("2d");
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#7f7f7f";
     ctx.fillRect(0, 0, obraCanvas.width, obraCanvas.height);
 
     // calculate background w,h
