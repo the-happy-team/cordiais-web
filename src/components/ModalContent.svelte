@@ -34,6 +34,8 @@
 </Modal>
 
 <style lang="scss">
+  @import "../sass/globals.scss";
+
   .modal-content {
     position: relative;
     width: 50%;
@@ -47,6 +49,12 @@
     box-sizing: border-box;
     background-color: var(--color-bg);
     overflow-y: scroll;
+
+    @media screen and (max-width: $mobile-max-width) {
+      width: 80%;
+      top: 0;
+      margin: 0 auto;
+    }
   }
 
   :global(.modal-content p) {
@@ -54,6 +62,12 @@
     font-size: 15px;
     text-align: justify;
     line-height: 1.5;
+
+    @media screen and (max-width: $mobile-max-width) {
+      font-size: 16px;
+      text-align: left;
+      line-height: 1.6;
+    }
   }
 
   .info-logo-container {
