@@ -172,6 +172,8 @@
 <VLibras />
 
 <style lang="scss">
+  @import "./sass/globals.scss";
+
   .container {
     display: flex;
     flex-wrap: wrap;
@@ -188,6 +190,11 @@
     padding-bottom: 10%;
     box-sizing: border-box;
     user-select: none;
+
+    @media screen and (max-width: $mobile-max-width) {
+      width: calc(100% / 3);
+      padding-bottom: calc(100% / 3);
+    }
 
     cursor: initial;
     pointer-events: none;
