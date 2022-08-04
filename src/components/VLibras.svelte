@@ -16,13 +16,7 @@
 <style lang="scss">
   @import "../sass/globals.scss";
 
-  .vlibras-container {
-    @media screen and (max-width: $mobile-max-width) {
-      display: none;
-    }
-
-    &.hide {
-      display: none;
-    }
+  .vlibras-container.hide {
+    display: none;
   }
 </style>
