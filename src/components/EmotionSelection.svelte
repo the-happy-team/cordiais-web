@@ -28,6 +28,8 @@
 
   input[type="radio"] {
     width: 0;
+    appearance: none;
+    display: none;
   }
 
   .emotion-option {
