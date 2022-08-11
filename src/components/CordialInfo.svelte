@@ -36,6 +36,9 @@
     text-align: center;
     font-size: 14px;
     font-weight: 400;
+    @media screen and (max-width: 1025px) and (min-width: 1023px) and (orientation: landscape) {
+      font-size: 13px;
+    }
   }
 
   .obra-item.obra-artist {
