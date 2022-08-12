@@ -37,6 +37,14 @@
   </MenuItem>
 
   <MenuItem
+    on:click={() => handleMenuSelection(MenuItemType.About)}
+    bind:height={menuButtonHeight}
+    selected={selectedItem == MenuItemType.About}
+  >
+    {menu.about}
+  </MenuItem>
+
+  <MenuItem
     on:click={() => handleMenuSelection(MenuItemType.OrderBy)}
     on:click={handleSubMenuLocation}
     selected={selectedItem == MenuItemType.OrderBy}
@@ -50,14 +58,6 @@
     selected={selectedItem == MenuItemType.FilterBy}
   >
     {menu.highlight}
-  </MenuItem>
-
-  <MenuItem
-    on:click={() => handleMenuSelection(MenuItemType.About)}
-    bind:height={menuButtonHeight}
-    selected={selectedItem == MenuItemType.About}
-  >
-    {menu.about}
   </MenuItem>
 
   <MenuItem
