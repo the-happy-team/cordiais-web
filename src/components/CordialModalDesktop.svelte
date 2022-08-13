@@ -57,6 +57,8 @@
       if (isHorizontal) {
         canvas.height = (modal.height - info.height) / 2;
         canvas.width = canvas.height / obraRatioHeight;
+        modal.width = canvas.width;
+        info.width = canvas.width;
       } else {
         canvas.height = modal.height;
         info.height = modal.height;
