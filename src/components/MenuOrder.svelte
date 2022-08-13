@@ -44,7 +44,7 @@
     justify-content: space-between;
     align-items: flex-start;
     position: absolute;
-    top: calc(20vw - var(--menuButtonHeight));
+    top: calc(30vw - var(--menuButtonHeight));
     left: calc(10vw + var(--menuPosLeft) - 1px);
     padding: 0;
     box-sizing: border-box;
