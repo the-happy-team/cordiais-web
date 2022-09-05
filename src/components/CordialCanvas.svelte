@@ -52,7 +52,7 @@
     const borderWidth =
       0.25 * (obWpH - Math.sqrt(obWpH * obWpH - 4 * emoNorm * obWH));
     const squareSide = Math.sqrt(0.01 * selectedEmotionValue * obWH);
-    const squareThreshold = 0.8;
+    const squareThreshold = 0.7;
 
     const obraShape = {
       height: obraBackground.height - 2 * borderWidth,
