@@ -70,7 +70,7 @@
 
 <style lang="scss">
   .menu {
-    width: 100vw;
+    width: 100%;
     height: calc(40vw + var(--menuButtonHeight));
     display: flex;
     flex-direction: column;
