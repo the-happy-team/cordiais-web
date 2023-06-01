@@ -11,7 +11,7 @@
   import MenuOrder from "./components/MenuOrder.svelte";
   import MenuFilter from "./components/MenuFilter.svelte";
   import MenuLanguage from "./components/MenuLanguage.svelte";
-  import VLibras from "./components/VLibras.svelte";
+  // import VLibras from "./components/VLibras.svelte";
 
   const baseurl = `${window.location.origin}${window.location.pathname}`;
 
@@ -169,7 +169,7 @@
   <CordialModal on:close={closeCordial} bind:obra={selectedObra} bind:orderBy />
 {/if}
 
-<VLibras />
+<!-- <VLibras /> -->
 
 <style lang="scss">
   @import "./sass/globals.scss";
