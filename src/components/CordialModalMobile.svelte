@@ -12,6 +12,8 @@
   let modalWidth = 0;
   let canvasWidth = 0;
   let canvasHeight = 0;
+  let infoPadding = 16;
+  let spaceMargin = 13;
 
   const handleClick = (e: MouseEvent) => {
     e.stopPropagation();
@@ -32,6 +34,8 @@
     `--modalWidth: ${modalWidth}px;`,
     `--canvasWidth: ${canvasWidth}px;`,
     `--canvasHeight: ${canvasHeight}px;`,
+    `--infoPadding: ${infoPadding}px;`,
+    `--spaceMargin: ${spaceMargin}px;`,
   ].join(" ");
 </script>
 
@@ -70,8 +74,13 @@
       display: flex;
       flex-direction: column;
       box-sizing: border-box;
-      background-color: var(--color-bg);
-      overflow: hidden;
+      overflow: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar{
+        display: none;
+      }
 
       .canvases-container {
         display: flex;
@@ -93,14 +102,15 @@
         flex-direction: column;
         justify-content: center;
         width: var(--modalWidth);
-        padding: 16px;
+        background-color: var(--color-bg);
         box-sizing: border-box;
+        padding: var(--infoPadding);
 
         .space {
           width: 12%;
           height: 0;
           border-bottom: 2px solid #000;
-          margin: 12px auto;
+          margin: var(--spaceMargin) auto;
         }
       }
     }
