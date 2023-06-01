@@ -1,8 +1,19 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { language } from "../stores.js";
   import { Languages } from "../types/cordiais.types";
-  new window.VLibras.Widget("https://vlibras.gov.br/app");
+  import ScriptLoader from "./ScriptLoader.svelte";
+
+  let mScriptLoader: ScriptLoader;
+
+  onMount(() => {
+    mScriptLoader
+      .loadScript("https://vlibras.gov.br/app/vlibras-plugin.js")
+      .then(() => new window.VLibras.Widget("https://vlibras.gov.br/app"));
+  });
 </script>
+
+<ScriptLoader bind:this={mScriptLoader} />
 
 <div class="vlibras-container" class:hide={$language !== Languages.PT}>
   <div vw class="enabled">

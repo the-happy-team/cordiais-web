@@ -169,7 +169,7 @@
   <CordialModal on:close={closeCordial} bind:obra={selectedObra} bind:orderBy />
 {/if}
 
-<!-- <VLibras /> -->
+<VLibras />
 
 <style lang="scss">
   @import "./sass/globals.scss";
