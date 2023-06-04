@@ -114,7 +114,7 @@ const about = {
 const greetings = {
   en: `
   <p>
-    Welcome to Cordiality. This project uses facial emotion recognition through micro facial expressions to quantify in a few faces what was defined as the basic emotions: happiness, surprise, sadness, disgust, anger, and fear. Neutrality can be interpreted as a non-emotion or unclassifiable emotion.
+    xxxxWelcome to Cordiality. This project uses facial emotion recognition through micro facial expressions to quantify in a few faces what was defined as the basic emotions: happiness, surprise, sadness, disgust, anger, and fear. Neutrality can be interpreted as a non-emotion or unclassifiable emotion.
   </p>
 
   <p>
