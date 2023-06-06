@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           persist-credentials: false
 
@@ -20,6 +20,9 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: CNAME
+        run: echo "cordiais.marinagem.com" > ./public/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
